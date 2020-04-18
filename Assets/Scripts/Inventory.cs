@@ -6,25 +6,62 @@ public class Inventory : MonoBehaviour
 {
 
     [SerializeField] private InventoryItem[] playerInventory;
+    public int maxQty = 6;
+    private int currentQty = 0;
 
     public void AddItem(string newItem)
     {
-        // Perform any validation checks here.
+        if (currentQty < maxQty)
+        {
 
+            foreach (InventoryItem tmp in playerInventory)
+            {
+                if (tmp.name == newItem)
+                {
+                    tmp.quantity = tmp.quantity + 1;
+                    currentQty += 1;
+                    break;
+                }
+                if (tmp.name == "free")
+                {
+                    tmp.quantity = tmp.quantity + 1;
+                    tmp.name = newItem;
+                    currentQty += 1;
+                    break;
+                }
+            }
+        } else
+        {
+            Debug.Log("Max Qty Reached");
+        }
+    }
+
+    public void RemoveItem(string newItem)
+    {
         foreach (InventoryItem tmp in playerInventory)
         {
             if (tmp.name == newItem)
             {
-                tmp.quantity = tmp.quantity +1 ;
-                break;
-            }
-            if (tmp.name == "free")
+                if (tmp.quantity > 0)
+                {
+                    tmp.quantity = tmp.quantity - 1;
+                    currentQty -= 1;
+                    break;
+                }                
+            }            
+        }
+    }
+
+    public int GetItemQty(string newItem)
+    {
+        foreach (InventoryItem tmp in playerInventory)
+        {
+            if (tmp.name == newItem)
             {
-                tmp.quantity = tmp.quantity + 1;
-                tmp.name = newItem;
-                break;
+                return tmp.quantity;
             }
-        }         
+        }
+        return 0;
     }
 
 }

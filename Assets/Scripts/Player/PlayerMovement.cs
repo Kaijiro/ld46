@@ -43,6 +43,11 @@ public class PlayerMovement : MonoBehaviour
 		RaycastHit2D leftCheck = Physics2D.Raycast(pos + lOffset, Vector2.down, groundDistance, groundLayer);
 		RaycastHit2D rightCheck = Physics2D.Raycast(pos + rOffset, Vector2.down, groundDistance, groundLayer);
 
+		/**
+		Color color = leftCheck ? Color.red : Color.green;
+		Debug.DrawRay(pos + lOffset, Vector2.down * groundDistance, color);
+		/**/
+
 		if (leftCheck || rightCheck)
 			isJumping = false;
 	}
