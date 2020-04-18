@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Recipes
 {
-    public class SimpleRecipe : BaseRecipe
+    public class SimpleRecipe : Recipe
     {
         public SimpleRecipe()
         {

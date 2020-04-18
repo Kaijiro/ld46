@@ -35,7 +35,6 @@ namespace Streum
         void DecreaseSatisfaction()
         {
             _currentSatisfaction -= satisfactionDecayRate * barUpdateRate;
-            Debug.Log("Current Streum Satisfaction is " + _currentSatisfaction);
 
             UpdateSlider();
 

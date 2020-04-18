@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class QTESystem : MonoBehaviour
 {
-    private BaseRecipe _currentRecipe;
+    private Recipe _currentRecipe;
     private QTEButtons.QTEInput _waitedInput;
     private bool _waitingForQteInput;
 
+    private void Start()
+    {
+        GameEvents.Instance.OnRecipeStart += OnRecipeStart;
+    }
+    
     // Update is called once per frame
     private void Update()
     {
@@ -43,17 +48,12 @@ public class QTESystem : MonoBehaviour
         }
     }
 
-    public void StartRecipe(BaseRecipe recipe)
+    private void OnRecipeStart(Recipe recipe)
     {
         Debug.Log("Starting a new recipe !");
         _currentRecipe = recipe;
         _currentRecipe.Begin();
         _waitedInput = recipe.GetNextStroke();
         Debug.Log("Waited input is " + _waitedInput.Key);
-    }
-
-    private void OnRecipeFinished()
-    {
-        
     }
 }

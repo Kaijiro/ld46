@@ -2,7 +2,7 @@
 
 namespace Recipes
 {
-    public abstract class BaseRecipe
+    public abstract class Recipe
     {
         protected List<QTEButtons.QTEInput> Strokes;
         protected int CurrentStrokeIndex = 0;

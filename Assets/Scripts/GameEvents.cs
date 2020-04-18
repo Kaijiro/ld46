@@ -1,4 +1,5 @@
 ﻿using System;
+using Recipes;
 using UnityEngine;
 
 public class GameEvents : MonoBehaviour
@@ -15,5 +16,12 @@ public class GameEvents : MonoBehaviour
     public void RecipeFinished(int recipeScore)
     {
         OnRecipeFinished?.Invoke(recipeScore);
+    }
+
+    public event Action<Recipe> OnRecipeStart;
+
+    public void RecipeStart(Recipe recipe)
+    {
+        OnRecipeStart?.Invoke(recipe);
     }
 }
