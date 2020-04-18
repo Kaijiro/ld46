@@ -4,22 +4,19 @@ namespace Recipes
 {
     public abstract class BaseRecipe
     {
-        protected List<string> Strokes;
+        protected List<QTEButtons.QTEInput> Strokes;
         protected int CurrentStrokeIndex = 0;
         
         protected int BaseScore;
-        protected int CurrentScore;
+        public int CurrentScore { get; protected set; }
+
+        public string Description { get; protected set; }
 
         public abstract void DecreaseScore();
 
-        public string GetNextStroke()
+        public QTEButtons.QTEInput GetNextStroke()
         {
-            return CurrentStrokeIndex >= Strokes.Count ? "" : Strokes[CurrentStrokeIndex++];
-        }
-
-        public int GetCurrentScore()
-        {
-            return CurrentScore;
+            return CurrentStrokeIndex >= Strokes.Count ? null : Strokes[CurrentStrokeIndex++];
         }
 
         public void Begin()

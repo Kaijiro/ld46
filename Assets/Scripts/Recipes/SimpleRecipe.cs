@@ -7,12 +7,12 @@ namespace Recipes
     {
         public SimpleRecipe()
         {
-            Strokes = new List<string>
-            {
-                "QTE Input 1", "QTE Input 2", "QTE Input 3", "QTE Input 4"
-            };
-
             BaseScore = 100;
+            Description = "You have to put the chicken, the salmon, mix and serve.";
+            Strokes = new List<QTEButtons.QTEInput>
+            {
+                QTEButtons.U_KEY, QTEButtons.J_KEY, QTEButtons.I_KEY, QTEButtons.K_KEY
+            };
         }
         
         public override void DecreaseScore()

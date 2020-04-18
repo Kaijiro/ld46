@@ -29,12 +29,12 @@ public class QTESystem : MonoBehaviour
                     _currentRecipe.DecreaseScore();
                 }
 
-                _waitedInput = _currentRecipe.GetNextStroke();
-                Debug.Log("New wanted input is " + _waitedInput);
+                _waitedInput = _currentRecipe.GetNextStroke()?.TechnicalKeyName;
+                Debug.Log("New wanted input is " + (_waitedInput ?? "<none>"));
 
-                if (_waitedInput == "")
+                if (_waitedInput == null)
                 {
-                    Debug.Log("End of the QTE ! The score is : " + _currentRecipe.GetCurrentScore());
+                    Debug.Log("End of the QTE ! The score is : " + _currentRecipe.CurrentScore);
                     _waitingForQteInput = false;
                     _currentRecipe = null;
                 }
@@ -47,7 +47,7 @@ public class QTESystem : MonoBehaviour
         Debug.Log("Starting a new recipe !");
         _currentRecipe = recipe;
         _currentRecipe.Begin();
-        _waitedInput = recipe.GetNextStroke();
+        _waitedInput = recipe.GetNextStroke().TechnicalKeyName;
         Debug.Log("Waited input is " + _waitedInput);
     }
 }
