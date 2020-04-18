@@ -2,7 +2,8 @@
 
 public class PlayerMovement : MonoBehaviour
 {
-	public float speed = 8f;				
+	public float groundSpeed = 8f;
+	public float airSpeed = 3f;
 	public float maxFallSpeed = -25f;       
 	public float footOffset = .4f;          
 	public float groundDistance = .87f;     
@@ -48,7 +49,10 @@ public class PlayerMovement : MonoBehaviour
 
 		void GroundMovement()
 	{
-
+		float speed = groundSpeed;
+		if (isJumping)
+			speed = airSpeed;
+		
 		float xVelocity = speed * input.horizontal;
 		if (xVelocity * direction < 0f)
 			FlipCharacterDirection();
