@@ -9,28 +9,27 @@ public class Pickable : MonoBehaviour
 
     public string pickType = "food";
 
-    private Inventory inventoryScript;
+    // private Inventory inventoryScript;
     public Spawner spawnerScript;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Player" && !inventoryScript.IsInventoryFull() )
+        if (other.tag == "Player")
         {
-            inventoryScript.AddItem(pickType);
-            spawnerScript.Reset();
-            OnDestroy();
+            Inventory inventoryScript = other.GetComponent<Inventory>();
+
+            if (!inventoryScript.IsInventoryFull())
+            {
+                inventoryScript.AddItem(pickType);
+                spawnerScript.Reset();
+                OnDestroy();
+            }
         }
     }
 
     public void OnDestroy() {
         Destroy(gameObject);
     }
-
-    public void setInventoryTarget(Inventory newScript)
-    {
-        inventoryScript = newScript;
-    }
-
 
     public void setSpawner(Spawner newScript)
     {

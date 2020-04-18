@@ -10,6 +10,12 @@ public class Inventory : MonoBehaviour
     public Sprite[] itemSprites; 
     public int maxQty = 6;
     private int currentQty = 0;
+    private string[] inventoryContent;
+
+    void Start()
+    {
+        inventoryContent = new string[6];
+    }
 
     public void AddItem(string newItem)
     {
@@ -58,13 +64,32 @@ public class Inventory : MonoBehaviour
         if ( mode == "add" )
         {
             InventoryUI.GetChild(currentQty).GetComponent<SpriteRenderer>().sprite = itemSprites[itemSpriteIdx];
+            inventoryContent[currentQty] = itemName;
         }
 
         if (mode == "remove")
         {
-            // InventoryUI.GetChild(currentQty).GetComponent<SpriteRenderer>().sprite = null;
+            // 
+            int index = 0;
+            bool removed = false;
+            foreach (string tmp in inventoryContent)
+            {
+                if (tmp == itemName || removed)
+                {
+                    if ( index +1 < maxQty ) 
+                    {
+                        InventoryUI.GetChild(index).GetComponent<SpriteRenderer>().sprite = InventoryUI.GetChild(index + 1).GetComponent<SpriteRenderer>().sprite;
+                        inventoryContent[index] = inventoryContent[index + 1];
+                        removed = true;
+                    } else
+                    {
+                        InventoryUI.GetChild(index).GetComponent<SpriteRenderer>().sprite = null;
+                        inventoryContent[index] = null;
+                    }                    
+                }
+                index++;
+            }
         }
-
     }
 
     public void RemoveItem(string newItem)
@@ -79,6 +104,18 @@ public class Inventory : MonoBehaviour
                 break;            
             }            
         }
+    }
+
+    public bool HasItem(string itemNeeded)
+    {
+        foreach (InventoryItem tmp in playerInventory)
+        {
+            if (tmp.name == itemNeeded && tmp.quantity > 0)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     public bool IsInventoryFull()
