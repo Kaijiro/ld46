@@ -14,6 +14,9 @@ TagManager:
   - 
   - 
   - 
+  - Player
+  - 
+  - Platforms
   - 
   - 
   - 
@@ -25,10 +28,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - BG
   - 
   - 
   - 
@@ -40,4 +40,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Platforms
+    uniqueID: 1315438767
     locked: 0
