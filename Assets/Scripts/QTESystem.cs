@@ -35,6 +35,7 @@ public class QTESystem : MonoBehaviour
                 if (_waitedInput == null)
                 {
                     Debug.Log("End of the QTE ! The score is : " + _currentRecipe.CurrentScore);
+                    GameEvents.Instance.RecipeFinished(_currentRecipe.CurrentScore);
                     _waitingForQteInput = false;
                     _currentRecipe = null;
                 }
@@ -49,5 +50,10 @@ public class QTESystem : MonoBehaviour
         _currentRecipe.Begin();
         _waitedInput = recipe.GetNextStroke();
         Debug.Log("Waited input is " + _waitedInput.Key);
+    }
+
+    private void OnRecipeFinished()
+    {
+        
     }
 }

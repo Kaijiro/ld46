@@ -28,6 +28,8 @@ namespace Streum
             _fillingImage = _slider.fillRect.GetComponent<Image>();
             
             InvokeRepeating(nameof(DecreaseSatisfaction), 0f, barUpdateRate);
+
+            GameEvents.Instance.OnRecipeFinished += OnRecipeFinished;
         }
 
         void DecreaseSatisfaction()
@@ -59,6 +61,11 @@ namespace Streum
             {
                 _fillingImage.color = lowSatisfactionColor;
             }
+        }
+
+        private void OnRecipeFinished(int score)
+        {
+            _currentSatisfaction = Math.Min(maximumSatisfaction, _currentSatisfaction + score);
         }
     }
 }
