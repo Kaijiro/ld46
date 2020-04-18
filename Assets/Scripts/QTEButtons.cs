@@ -1,11 +1,12 @@
 ﻿public static class QTEButtons
 {
-    public static QTEInput U_KEY = new QTEInput("QTE_Input_1", "U", "Place the chicken on the table");
-    public static QTEInput J_KEY = new QTEInput("QTE_Input_2", "J", "Place the salmon on the table");
+    public static QTEInput U_KEY = new QTEInput("QTE_Input_1", "U", "Add the chicken");
+    public static QTEInput J_KEY = new QTEInput("QTE_Input_2", "J", "Add the salmon");
     public static QTEInput I_KEY = new QTEInput("QTE_Input_3", "I", "Mix the ingredients");
     public static QTEInput K_KEY = new QTEInput("QTE_Input_4", "K", "Serve the meal");
-    public static QTEInput O_KEY = new QTEInput("QTE_Input_5", "O", "Do things");
-    public static QTEInput L_KEY = new QTEInput("QTE_Input_6", "L", "Do things");
+    public static QTEInput O_KEY = new QTEInput("QTE_Input_5", "O", "Open the food can");
+    public static QTEInput L_KEY = new QTEInput("QTE_Input_6", "L", "Add the catnip");
+    public static QTEInput P_KEY = new QTEInput("QTE_Input_7", "P", "Pour the milk");
 
     public class QTEInput
     {

@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - HelpCommand - Lvl1
+  - HelpCommand - Lvl2
   layers:
   - Default
   - TransparentFX

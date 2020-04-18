@@ -11,15 +11,10 @@ public class TestQTEController : MonoBehaviour
         new SimpleRecipe()
     };
 
-    private readonly List<QTEButtons.QTEInput> _availableCommands = new List<QTEButtons.QTEInput>
-    {
-        QTEButtons.U_KEY, QTEButtons.J_KEY, QTEButtons.I_KEY, QTEButtons.K_KEY
-    };
-
     private Text _descriptionField;
     public GameObject recipeDescriptionText;
-    public GameObject actionListPanel;
-    public GameObject textHolderPrefab;
+
+    private int _playerLevel = 1;
 
     private void Awake()
     {
@@ -42,6 +37,6 @@ public class TestQTEController : MonoBehaviour
 
     private void UpdateActionListPanel()
     {
-
+        
     }
 }
