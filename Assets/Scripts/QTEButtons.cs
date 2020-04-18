@@ -9,15 +9,15 @@
 
     public class QTEInput
     {
-        public string TechnicalKeyName { get; private set; }
-        public string Description { get; private set; }
-        public string Key { get; private set; }
-
         public QTEInput(string technicalKeyName, string key, string description)
         {
             TechnicalKeyName = technicalKeyName;
             Description = description;
             Key = key;
         }
+
+        public string TechnicalKeyName { get; }
+        public string Description { get; }
+        public string Key { get; }
     }
 }
