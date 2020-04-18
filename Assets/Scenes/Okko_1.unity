@@ -691,6 +691,11 @@ MonoBehaviour:
   speed: 8
   coyoteDuration: 0.05
   maxFallSpeed: -25
+  footOffset: 0.4
+  groundDistance: 0.87
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 2048
   jumpForce: 7
   jumpHoldDuration: 0.1
   isJumping: 0
