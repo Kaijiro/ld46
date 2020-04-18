@@ -143,5 +143,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 152798a5b8604e54db17db860edb0d5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickType: salmon
+  pickType: herb
   spawnerScript: {fileID: 0}
