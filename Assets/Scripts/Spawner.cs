@@ -6,22 +6,33 @@ public class Spawner : MonoBehaviour
 {
     public Pickable[] prefab;
     public Inventory inventoryScript;
+    public Spawner[] otherSpawner;
+
+    private bool free = true;
 
     void Start()
     {
-        Spawn();
+        Spawn(true);
     }
 
-    private void Spawn ()
+    private void Spawn (bool force)
     {
-        Pickable newObject = Instantiate(prefab[Random.Range(0,prefab.Length)], transform.position, Quaternion.identity);
-        newObject.setInventoryTarget(inventoryScript);
-        newObject.setSpawner(this);
+        if ( otherSpawner[0].isFree() || otherSpawner[1].isFree() || force )
+        {
+            free = false;
+            Pickable newObject = Instantiate(prefab[Random.Range(0, prefab.Length)], transform.position, Quaternion.identity);
+            newObject.setInventoryTarget(inventoryScript);
+            newObject.setSpawner(this);
+        } else
+        {
+            StartCoroutine("WaitAndSpawn", 2.0f);
+        }
    
     }
 
     public void Reset()
     {
+        free = true;
         StartCoroutine("WaitAndSpawn", 4.0f);
     }
 
@@ -29,6 +40,11 @@ public class Spawner : MonoBehaviour
     private IEnumerator WaitAndSpawn(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
-        Spawn();
+        Spawn(false);
+    }
+
+    public bool isFree()
+    {
+        return free;
     }
 }
