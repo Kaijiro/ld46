@@ -21,7 +21,6 @@ public class Spawner : MonoBehaviour
         {
             free = false;
             Pickable newObject = Instantiate(prefab[Random.Range(0, prefab.Length)], transform.position, Quaternion.identity);
-            newObject.setInventoryTarget(inventoryScript);
             newObject.setSpawner(this);
         } else
         {
