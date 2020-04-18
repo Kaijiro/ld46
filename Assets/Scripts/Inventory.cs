@@ -10,25 +10,21 @@ public class Inventory : MonoBehaviour
     public void AddItem(string newItem)
     {
         // Perform any validation checks here.
-        bool added = false;
-        int cpt = -1;
 
         foreach (InventoryItem tmp in playerInventory)
         {
             if (tmp.name == newItem)
             {
                 tmp.quantity = tmp.quantity +1 ;
-                added = true;
+                break;
             }
-            cpt++;
-        }
-
-        if (!added)
-        {
-            playerInventory[cpt] = new InventoryItem(1, newItem);
-        }
-
-        
+            if (tmp.name == "free")
+            {
+                tmp.quantity = tmp.quantity + 1;
+                tmp.name = newItem;
+                break;
+            }
+        }         
     }
 
 }
@@ -37,8 +33,8 @@ public class Inventory : MonoBehaviour
 public class InventoryItem
 {
 
-    public int quantity;
-    public string name;
+    public int quantity = 0;
+    public string name = "free";
 
     public InventoryItem(int newQuantity, string newName)
     {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public Pickable prefab;
+    public Pickable[] prefab;
     public Inventory inventoryScript;
 
     void Start()
@@ -14,7 +14,7 @@ public class Spawner : MonoBehaviour
 
     private void Spawn ()
     {
-        Pickable newObject = Instantiate(prefab, transform.position, Quaternion.identity);
+        Pickable newObject = Instantiate(prefab[Random.Range(0,prefab.Length)], transform.position, Quaternion.identity);
         newObject.setInventoryTarget(inventoryScript);
         newObject.setSpawner(this);
    
