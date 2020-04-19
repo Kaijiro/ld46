@@ -8,7 +8,7 @@ namespace Recipes
         {
             BaseScore = 10;
             Description = "You have to open the food can, pour it then serve !";
-            IsForLevels = new[] {1, 2, 3};
+            Level = 1;
             Strokes = new List<QTEButtons.QTEInput>
             {
                 QTEButtons.O_KEY, QTEButtons.P_KEY, QTEButtons.K_KEY
@@ -18,6 +18,7 @@ namespace Recipes
 
         public override void DecreaseScore()
         {
+            CurrentScore--;
         }
     }
 }

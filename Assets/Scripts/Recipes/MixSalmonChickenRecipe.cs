@@ -8,7 +8,7 @@ namespace Recipes
         {
             BaseScore = 20;
             Description = "You have to add the salmon, then the chicken, mix both ingredients and then serve the meal";
-            IsForLevels = new[] {2, 3, 4};
+            Level = 2;
             Strokes = new List<QTEButtons.QTEInput>
             {
                 QTEButtons.J_KEY, QTEButtons.U_KEY, QTEButtons.I_KEY, QTEButtons.K_KEY

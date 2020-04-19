@@ -8,7 +8,7 @@ namespace Recipes
         {
             BaseScore = 10;
             Description = "You have to pour the milk twice (because you have 2 bottles of milk !) and then serve.";
-            IsForLevels = new[] {1, 2, 3};
+            Level = 1;
             Strokes = new List<QTEButtons.QTEInput>
             {
                 QTEButtons.P_KEY, QTEButtons.P_KEY, QTEButtons.K_KEY

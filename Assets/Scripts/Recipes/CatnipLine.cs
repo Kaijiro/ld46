@@ -9,7 +9,7 @@ namespace Recipes
             BaseScore = 10;
             Description =
                 "Stop judging me ! Just put this catnip in the mixer, mix it and serve it in a line so I can take it";
-            IsForLevels = new[] {1, 2, 3};
+            Level = 1;
             Strokes = new List<QTEButtons.QTEInput>
             {
                 QTEButtons.L_KEY, QTEButtons.I_KEY, QTEButtons.K_KEY

@@ -12,7 +12,7 @@ namespace Recipes
                 "First of all, arrange the first parts of the chicken in the dish. Then carefully open the can, " +
                 "and pour it with all your love. Cover with the leftover chicken and serve without forgetting who " +
                 "is the true master here.";
-            IsForLevels = new[] {3, 4, 5};
+            Level = 3;
             Strokes = new List<QTEButtons.QTEInput>
             {
                 QTEButtons.U_KEY, QTEButtons.O_KEY, QTEButtons.P_KEY, QTEButtons.U_KEY, QTEButtons.K_KEY

@@ -11,10 +11,10 @@ namespace Recipes
         public int CurrentScore { get; protected set; }
 
         public string Description { get; protected set; }
-        
-        public int[] IsForLevels { get; protected set; }
 
         public string[] Ingredients;
+        
+        public int Level { get; protected set; }
 
         public abstract void DecreaseScore();
 
@@ -27,6 +27,11 @@ namespace Recipes
         {
             CurrentStrokeIndex = 0;
             CurrentScore = BaseScore;
+        }
+
+        public bool IsPerfectlyDone()
+        {
+            return CurrentScore == BaseScore;
         }
     }
 }
