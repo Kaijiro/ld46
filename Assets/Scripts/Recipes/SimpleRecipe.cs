@@ -13,6 +13,9 @@ namespace Recipes
             {
                 QTEButtons.U_KEY, QTEButtons.J_KEY, QTEButtons.I_KEY, QTEButtons.K_KEY
             };
+            Ingredients = new string[2];
+            Ingredients[0] = "chicken";
+            Ingredients[1] = "salmon";
         }
         
         public override void DecreaseScore()

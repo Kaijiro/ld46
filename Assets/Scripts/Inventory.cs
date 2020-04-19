@@ -38,11 +38,11 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void UpdateInventoryUI( string itemName, string mode)
+    public void UpdateInventoryUI(string itemName, string mode)
     {
         int itemSpriteIdx = 0;
         // WARNING : UGLY DIRTY CODE
-        switch(itemName)
+        switch (itemName)
         {
             case "can":
                 itemSpriteIdx = 0;
@@ -61,7 +61,7 @@ public class Inventory : MonoBehaviour
                 break;
         }
 
-        if ( mode == "add" )
+        if (mode == "add")
         {
             InventoryUI.GetChild(currentQty).GetComponent<SpriteRenderer>().sprite = itemSprites[itemSpriteIdx];
             inventoryContent[currentQty] = itemName;
@@ -76,20 +76,21 @@ public class Inventory : MonoBehaviour
             {
                 if (tmp == itemName || removed)
                 {
-                    if ( index +1 < maxQty ) 
+                    if (index + 1 < maxQty)
                     {
                         InventoryUI.GetChild(index).GetComponent<SpriteRenderer>().sprite = InventoryUI.GetChild(index + 1).GetComponent<SpriteRenderer>().sprite;
                         inventoryContent[index] = inventoryContent[index + 1];
                         removed = true;
-                    } else
+                    }
+                    else
                     {
                         InventoryUI.GetChild(index).GetComponent<SpriteRenderer>().sprite = null;
                         inventoryContent[index] = null;
-                    }                    
+                    }
                 }
                 index++;
             }
-        }
+         }
     }
 
     public void RemoveItem(string newItem)
