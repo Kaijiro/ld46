@@ -56,4 +56,9 @@ public class QTESystem : MonoBehaviour
         _waitedInput = recipe.GetNextStroke();
         Debug.Log("Waited input is " + _waitedInput.Key);
     }
+
+    private void OnDestroy()
+    {
+        GameEvents.Instance.OnRecipeStart -= OnRecipeStart;
+    }
 }
