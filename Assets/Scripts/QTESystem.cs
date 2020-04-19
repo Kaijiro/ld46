@@ -8,6 +8,8 @@ public class QTESystem : MonoBehaviour
     private QTEButtons.QTEInput _waitedInput;
     private bool _waitingForQteInput;
 
+    public GameObject qtePannel;
+
     private void Start()
     {
         GameEvents.Instance.OnRecipeStart += OnRecipeStart;
@@ -43,6 +45,7 @@ public class QTESystem : MonoBehaviour
                     GameEvents.Instance.RecipeFinished(_currentRecipe.CurrentScore);
                     _waitingForQteInput = false;
                     _currentRecipe = null;
+                    qtePannel.SetActive(false);
                 }
             }
         }

@@ -301,6 +301,18 @@ PrefabInstance:
       propertyPath: otherSpawner.Array.data[1]
       value: 
       objectReference: {fileID: 1475218998}
+    - target: {fileID: 7645813383316511865, guid: 4d74571876f00684988e3d935964d378,
+        type: 3}
+      propertyPath: prefab.Array.data[1]
+      value: 
+      objectReference: {fileID: 3252544784311825546, guid: 5e485483554d196418f88df7373da0bc,
+        type: 3}
+    - target: {fileID: 7645813383316511865, guid: 4d74571876f00684988e3d935964d378,
+        type: 3}
+      propertyPath: prefab.Array.data[4]
+      value: 
+      objectReference: {fileID: 7027712360995905507, guid: 551a8c5d60854ad499efe9c6d5cc3ed1,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d74571876f00684988e3d935964d378, type: 3}
 --- !u!1 &639051752
@@ -334,6 +346,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxContent: 3
+  qtePannel: {fileID: 2040894182}
   recipeDescriptionText: {fileID: 255485315}
   level1Helps: {fileID: 1677166221}
   level2Helps: {fileID: 1715010265}
@@ -651,6 +664,18 @@ PrefabInstance:
       propertyPath: otherSpawner.Array.data[1]
       value: 
       objectReference: {fileID: 726175163}
+    - target: {fileID: 7645813383316511865, guid: 4d74571876f00684988e3d935964d378,
+        type: 3}
+      propertyPath: prefab.Array.data[1]
+      value: 
+      objectReference: {fileID: 3252544784311825546, guid: 5e485483554d196418f88df7373da0bc,
+        type: 3}
+    - target: {fileID: 7645813383316511865, guid: 4d74571876f00684988e3d935964d378,
+        type: 3}
+      propertyPath: prefab.Array.data[4]
+      value: 
+      objectReference: {fileID: 7027712360995905507, guid: 551a8c5d60854ad499efe9c6d5cc3ed1,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d74571876f00684988e3d935964d378, type: 3}
 --- !u!1 &920950930
@@ -840,6 +865,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4564340089153311146, guid: 69cdb9b05cd27644aa7ab0eeec0a39c1,
+        type: 3}
+      propertyPath: qtePannel
+      value: 
+      objectReference: {fileID: 2040894182}
     - target: {fileID: 4564340089153311147, guid: 69cdb9b05cd27644aa7ab0eeec0a39c1,
         type: 3}
       propertyPath: m_Name
@@ -944,7 +974,7 @@ PrefabInstance:
         type: 3}
       propertyPath: prefab.Array.data[1]
       value: 
-      objectReference: {fileID: 7027712360995905507, guid: 551a8c5d60854ad499efe9c6d5cc3ed1,
+      objectReference: {fileID: 3252544784311825546, guid: 5e485483554d196418f88df7373da0bc,
         type: 3}
     - target: {fileID: 7645813383316511865, guid: 4d74571876f00684988e3d935964d378,
         type: 3}
@@ -956,7 +986,7 @@ PrefabInstance:
         type: 3}
       propertyPath: prefab.Array.data[4]
       value: 
-      objectReference: {fileID: 3252544784311825546, guid: 5e485483554d196418f88df7373da0bc,
+      objectReference: {fileID: 7027712360995905507, guid: 551a8c5d60854ad499efe9c6d5cc3ed1,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d74571876f00684988e3d935964d378, type: 3}
@@ -3916,6 +3946,12 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &2040894182 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5635768267507760296, guid: 0163b1d324a37534b835515089abe440,
+    type: 3}
+  m_PrefabInstance: {fileID: 2067264817}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2067264817
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4051,7 +4087,7 @@ PrefabInstance:
     - target: {fileID: 5635768268439490948, guid: 0163b1d324a37534b835515089abe440,
         type: 3}
       propertyPath: satisfactionDecayRate
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5635768268439490949, guid: 0163b1d324a37534b835515089abe440,
         type: 3}
