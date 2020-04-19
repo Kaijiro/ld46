@@ -20,8 +20,10 @@ public class Kitchen : MonoBehaviour
     public GameObject level2Helps;
     public GameObject level3Helps;
     public Sprite[] itemSprites;
-
     public Transform stockUI;
+    public GameObject requirementDisplayer1;
+    public GameObject requirementDisplayer2;
+    
     private string[] stockUIContent;
     private int currentQtyStocked = 0;
 
@@ -44,6 +46,8 @@ public class Kitchen : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            DisplayRequirements();
+            
             Debug.Log("Hello Brian !");
             if (streumRequirements.Requirements.Count > 0)
             {
@@ -99,6 +103,30 @@ public class Kitchen : MonoBehaviour
         }
     }
 
+    private void DisplayRequirements()
+    {
+        switch (streumRequirements.Requirements.Count)
+        {
+            case 0:
+                requirementDisplayer1.SetActive(false);
+                requirementDisplayer2.SetActive(false);
+                break;
+            case 1:
+                requirementDisplayer1.SetActive(false);
+                requirementDisplayer2.SetActive(true);
+                break;
+            default:
+                requirementDisplayer1.SetActive(true);
+                requirementDisplayer2.SetActive(true);
+                break;
+        }
+    }
+
+    private void HideRequirements()
+    {
+        requirementDisplayer1.SetActive(false);
+        requirementDisplayer2.SetActive(false);
+    }
 
     private bool CheckRecipeTrigger(Inventory playerInventory)
     {
@@ -216,6 +244,7 @@ public class Kitchen : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other)
     {
         takeItem = false;
+        HideRequirements();
     }
 
     private void UpdateActionListPanel()

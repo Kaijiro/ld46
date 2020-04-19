@@ -6,6 +6,7 @@ namespace Recipes
     {
         public StuffedChickenSupreme()
         {
+            Name = "Stuffed chicken supreme";
             BaseScore = 30;
             Description =
                 "To create this divine dish, the servant will have to follow those instructions VERY carefully. " +

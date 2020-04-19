@@ -6,6 +6,7 @@ namespace Recipes
     {
         public SalmonWithCatnipSauceRecipe()
         {
+            Name = "Salmon with catnip sauce";
             BaseScore = 30;
             Description =
                 "To prepare this delicious meal, our dear servant will have to accomplish many tasks ! First of all, " +

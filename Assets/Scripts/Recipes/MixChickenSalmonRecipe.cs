@@ -6,6 +6,7 @@ namespace Recipes
     {
         public MixChickenSalmonRecipe()
         {
+            Name = "Mix Chicken/Salmon";
             BaseScore = 20;
             Description = "You have to add the chicken, then the salmon, mix both ingredients and then serve the meal";
             Level = 2;

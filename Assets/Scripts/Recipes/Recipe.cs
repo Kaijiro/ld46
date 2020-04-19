@@ -15,6 +15,8 @@ namespace Recipes
         public string[] Ingredients;
         
         public int Level { get; protected set; }
+        
+        public string Name { get; protected set; }
 
         public abstract void DecreaseScore();
 
