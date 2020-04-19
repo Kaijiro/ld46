@@ -41,14 +41,13 @@ public class Kitchen : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            DisplayRequirements();
-            
             Debug.Log("Hello Brian !");
             if (streumRequirements.Requirements.Count > 0)
             {
                 Inventory inventoryScript = other.GetComponent<Inventory>();
                 if (!CheckRecipeTrigger(inventoryScript))
                 {
+                    DisplayRequirements();
                     foreach (Recipe currentRecipe in streumRequirements.Requirements)
                     {
                         foreach (string itemNeeded in currentRecipe.Ingredients)
