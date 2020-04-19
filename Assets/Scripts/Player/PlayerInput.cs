@@ -6,7 +6,8 @@ public class PlayerInput : MonoBehaviour
 {
 
 	[HideInInspector] public float horizontal;		
-	[HideInInspector] public bool jumpPressed;		
+	[HideInInspector] public bool jumpPressed;
+	[HideInInspector] public bool trashPressed;
 	bool readyToClear;								
 
 
@@ -37,15 +38,17 @@ public class PlayerInput : MonoBehaviour
 		if (!readyToClear)
 			return;
 		
-		horizontal		= 0f;
-		jumpPressed		= false;
-		readyToClear	= false;
+		horizontal = 0f;
+		jumpPressed = false;
+		readyToClear = false;
+		trashPressed = false;
 	}
 
 	void ProcessInputs()
 	{
 		horizontal		+= Input.GetAxis("Horizontal");
 		jumpPressed		= jumpPressed || Input.GetKeyDown("space");
+		trashPressed = trashPressed || Input.GetKeyDown("t");
 	}
 
 }
