@@ -14,6 +14,8 @@ namespace Recipes
         
         public int[] IsForLevels { get; protected set; }
 
+        public string[] Ingredients;
+
         public abstract void DecreaseScore();
 
         public QTEButtons.QTEInput GetNextStroke()
