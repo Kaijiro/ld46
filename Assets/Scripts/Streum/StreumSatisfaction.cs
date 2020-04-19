@@ -66,5 +66,11 @@ namespace Streum
         {
             _currentSatisfaction = Math.Min(maximumSatisfaction, _currentSatisfaction + score);
         }
+
+        private void OnDestroy()
+        {
+            GameEvents.Instance.OnRecipeFinished -= OnRecipeFinished;
+            CancelInvoke(nameof(DecreaseSatisfaction));
+        }
     }
 }
