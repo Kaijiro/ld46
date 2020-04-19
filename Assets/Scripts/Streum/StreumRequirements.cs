@@ -32,6 +32,7 @@ namespace Streum
         // Start is called before the first frame update
         void Start()
         {
+            // TODO start with one requirements ?
             InvokeRepeating(nameof(GenerateRequirement), 1f, 1f);
         }
 

@@ -311,7 +311,7 @@ PrefabInstance:
         type: 3}
       propertyPath: prefab.Array.data[4]
       value: 
-      objectReference: {fileID: 7027712360995905507, guid: 551a8c5d60854ad499efe9c6d5cc3ed1,
+      objectReference: {fileID: 6586249876752884383, guid: e25e0148650caf5468075d0908b1cb95,
         type: 3}
     - target: {fileID: 7645813383316511865, guid: 4d74571876f00684988e3d935964d378,
         type: 3}
@@ -356,6 +356,7 @@ MonoBehaviour:
   level1Helps: {fileID: 1677166221}
   level2Helps: {fileID: 1715010265}
   level3Helps: {fileID: 343804663}
+  streumRequirements: {fileID: 1079350300}
 --- !u!61 &639051754
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -679,7 +680,7 @@ PrefabInstance:
         type: 3}
       propertyPath: prefab.Array.data[4]
       value: 
-      objectReference: {fileID: 7027712360995905507, guid: 551a8c5d60854ad499efe9c6d5cc3ed1,
+      objectReference: {fileID: 6586249876752884383, guid: e25e0148650caf5468075d0908b1cb95,
         type: 3}
     - target: {fileID: 7645813383316511865, guid: 4d74571876f00684988e3d935964d378,
         type: 3}
@@ -1077,7 +1078,7 @@ PrefabInstance:
         type: 3}
       propertyPath: prefab.Array.data[4]
       value: 
-      objectReference: {fileID: 7027712360995905507, guid: 551a8c5d60854ad499efe9c6d5cc3ed1,
+      objectReference: {fileID: 6586249876752884383, guid: e25e0148650caf5468075d0908b1cb95,
         type: 3}
     - target: {fileID: 7645813383316511865, guid: 4d74571876f00684988e3d935964d378,
         type: 3}

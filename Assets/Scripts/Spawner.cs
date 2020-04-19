@@ -24,7 +24,7 @@ public class Spawner : MonoBehaviour
         // First level, go easy on player, just spawn useful item
         if ( streumRequirements.Level == 1)
         {
-            max = 2;
+            max = 3;
         }
 
         if ( otherSpawner[0].isFree() || otherSpawner[1].isFree() || force )

@@ -46,8 +46,9 @@ MonoBehaviour:
   prefab:
   - {fileID: 6341326761803986851, guid: 55594902e63df42408a9a668bef88cd3, type: 3}
   - {fileID: 3252544784311825546, guid: 5e485483554d196418f88df7373da0bc, type: 3}
-  - {fileID: 6586249876752884383, guid: e25e0148650caf5468075d0908b1cb95, type: 3}
-  - {fileID: 628961849525938216, guid: 7de82216f31677146a1946596c24b183, type: 3}
   - {fileID: 7027712360995905507, guid: 551a8c5d60854ad499efe9c6d5cc3ed1, type: 3}
+  - {fileID: 628961849525938216, guid: 7de82216f31677146a1946596c24b183, type: 3}
+  - {fileID: 6586249876752884383, guid: e25e0148650caf5468075d0908b1cb95, type: 3}
   inventoryScript: {fileID: 0}
   otherSpawner: []
+  streumRequirements: {fileID: 0}
