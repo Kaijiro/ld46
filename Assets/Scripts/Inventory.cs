@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using InventoryItems;
 
 public class Inventory : MonoBehaviour
 {
@@ -136,19 +137,29 @@ public class Inventory : MonoBehaviour
         return 0;
     }
 
-}
-
-[System.Serializable]
-public class InventoryItem
-{
-
-    public int quantity = 0;
-    public string name = "free";
-
-    public InventoryItem(int newQuantity, string newName)
+    public string[] GetInventoryItems()
     {
-        quantity = newQuantity;
-        name = newName;
+        string[] copyInventory = new string[maxQty];
+        int index = 0;
+        int qty = 0;
+        foreach (InventoryItem tmp in playerInventory)
+        {
+            while (qty < tmp.quantity)
+            {
+                copyInventory[index] = tmp.name;
+                index++;
+                qty++;
+            }
+        }
+
+        foreach (string tmp in copyInventory)
+        {
+            Debug.Log(tmp);
+        }
+
+        return copyInventory;
     }
 
 }
+
+

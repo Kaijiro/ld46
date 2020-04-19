@@ -5,13 +5,13 @@ using UnityEngine.UI;
 using Recipes;
 using Streum;
 using Random = System.Random;
+using InventoryItems;
 
 public class Kitchen : MonoBehaviour
 {
     private bool takeItem = false;
-    private string[] stockContent;
     public int maxContent = 3;
-    private int currentQtyStocked = 0;
+    
 
     private Text _descriptionField;
     public GameObject qtePannel;
@@ -19,6 +19,11 @@ public class Kitchen : MonoBehaviour
     public GameObject level1Helps;
     public GameObject level2Helps;
     public GameObject level3Helps;
+    public Sprite[] itemSprites;
+
+    public Transform stockUI;
+    private string[] stockUIContent;
+    private int currentQtyStocked = 0;
 
     public StreumRequirements streumRequirements;
 
@@ -26,7 +31,7 @@ public class Kitchen : MonoBehaviour
 
     void Start()
     {
-        stockContent = new string[maxContent];
+        stockUIContent = new string[maxContent];
         UpdateActionListPanel();
     }
 
@@ -51,12 +56,33 @@ public class Kitchen : MonoBehaviour
                         {
                             Debug.Log("Do you have " + itemNeeded + " ?");
                             takeItem = true;
-
                             if (inventoryScript.HasItem(itemNeeded) && (currentQtyStocked < maxContent))
                             {
                                 Debug.Log("Great, thank you Brian !");
                                 inventoryScript.RemoveItem(itemNeeded);
-                                stockContent[currentQtyStocked] = itemNeeded;
+                                int itemSpriteIdx = 0;
+                                // WARNING : UGLY DIRTY CODE
+                                switch (itemNeeded)
+                                {
+                                    case "can":
+                                        itemSpriteIdx = 0;
+                                        break;
+                                    case "herb":
+                                        itemSpriteIdx = 1;
+                                        break;
+                                    case "milk":
+                                        itemSpriteIdx = 2;
+                                        break;
+                                    case "chicken":
+                                        itemSpriteIdx = 3;
+                                        break;
+                                    case "salmon":
+                                        itemSpriteIdx = 4;
+                                        break;
+                                }
+                                Debug.Log(currentQtyStocked);
+                                stockUI.GetChild(currentQtyStocked).GetComponent<SpriteRenderer>().sprite = itemSprites[itemSpriteIdx];
+                                stockUIContent[currentQtyStocked] = itemNeeded;
                                 currentQtyStocked++;
                             }
                             else
@@ -77,12 +103,14 @@ public class Kitchen : MonoBehaviour
     private bool CheckRecipeTrigger(Inventory playerInventory)
     {
         Debug.Log("In CheckRecipeTrigger");
+        string[] tmpPlayerInventory = playerInventory.GetInventoryItems();
+        string[] tmpStockContent = (string[])stockUIContent.Clone();
+
         foreach (Recipe currentRecipe in streumRequirements.Requirements)
         {
             bool go = false;
             bool found = false;
             int max = currentRecipe.Ingredients.Length;
-            Debug.Log("max " + max);
             string[] removeFromKitchen = new string[max];
             int idxFK = 0;
             int idxFP = 0;
@@ -90,37 +118,49 @@ public class Kitchen : MonoBehaviour
             int gotIt = 0;
             foreach (string itemNeeded in currentRecipe.Ingredients)
             {
-                Debug.Log("itemNeeded " + itemNeeded);
                 // Check if everything is available
                 found = false;
                 // First in kitchen stock
-                foreach (string itemStocked in stockContent)
+                int cpt = 0;
+                foreach (string itemStocked in tmpStockContent)
                 {
-                    Debug.Log("itemStocked " + itemStocked);
                     if ( itemStocked == itemNeeded )
                     {
                         gotIt++;
                         removeFromKitchen[idxFK] = itemNeeded;
+                        tmpStockContent[cpt] = "taken";
                         idxFK++;
                         found = true;
                         break;
                     }
+                    cpt++;
                 }
                 // then in user inventory
-                if (playerInventory.HasItem(itemNeeded) && !found)
+                
+                if (!found)
                 {
-                    gotIt++;
-                    removeFromPlayer[idxFP] = itemNeeded;
-                    idxFP++;
-                    found = true;
+                    cpt = 0;
+                    foreach (string itemStocked in tmpPlayerInventory)
+                    {
+                        if (itemStocked == itemNeeded)
+                        {
+                            gotIt++;
+                            removeFromPlayer[idxFP] = itemNeeded;
+                            tmpPlayerInventory[cpt] = "taken";
+                            idxFP++;
+                            break;
+                        }
+                        cpt++;
+                    }                 
                 }
             }
 
             go = (gotIt == max);
-            Debug.Log("gotIt " + gotIt);
+            
 
             if (go)
             {
+                
                 // Only once sure we have everything, remove from different inventory
                 foreach (string itemToTake in removeFromPlayer)
                 {
@@ -128,7 +168,11 @@ public class Kitchen : MonoBehaviour
                 }
                 foreach (string itemToTake in removeFromKitchen)
                 {
-                    RemoveItem(itemToTake);
+                    if (itemToTake != null && itemToTake != "")
+                    {
+                        Debug.Log("item to remove frigo" + itemToTake);
+                        RemoveItem(itemToTake);
+                    }
                 }
 
                 qtePannel.SetActive(true);
@@ -144,22 +188,28 @@ public class Kitchen : MonoBehaviour
     {
         int index = 0;
         bool removed = false;
-        foreach (string tmp in stockContent)
+        foreach (string tmp in stockUIContent)
         {
+            if (tmp == itemToRemove)
+            {
+                currentQtyStocked--;
+            }
             if (tmp == itemToRemove || removed)
             {
                 if (index + 1 < maxContent)
                 {
-                    stockContent[index] = stockContent[index + 1];
+                    stockUI.GetChild(index).GetComponent<SpriteRenderer>().sprite = stockUI.GetChild(index + 1).GetComponent<SpriteRenderer>().sprite;
+                    stockUIContent[index] = stockUIContent[index + 1];
                     removed = true;
                 }
                 else
                 {
-                    stockContent[index] = null;
+                    stockUI.GetChild(index).GetComponent<SpriteRenderer>().sprite = null;
+                    stockUIContent[index] = null;
                 }
             }
             index++;
-        }
+        }        
     }
 
     private void OnTriggerExit2D(Collider2D other)

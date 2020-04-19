@@ -20,7 +20,6 @@ public class Spawner : MonoBehaviour
     private void Spawn (bool force)
     {
         int max = prefab.Length;
-        Debug.Log(streumRequirements.Level);
         // First level, go easy on player, just spawn useful item
         if ( streumRequirements.Level == 1)
         {
