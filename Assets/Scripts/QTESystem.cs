@@ -43,7 +43,7 @@ public class QTESystem : MonoBehaviour
                 if (_waitedInput == null)
                 {
                     Debug.Log("End of the QTE ! The score is : " + _currentRecipe.CurrentScore);
-                    GameEvents.Instance.RecipeFinished(_currentRecipe.CurrentScore);
+                    GameEvents.Instance.RecipeFinished(_currentRecipe);
                     _waitingForQteInput = false;
                     _currentRecipe = null;
                     qtePannel.SetActive(false);
@@ -58,6 +58,7 @@ public class QTESystem : MonoBehaviour
         _currentRecipe = recipe;
         _currentRecipe.Begin();
         _waitedInput = recipe.GetNextStroke();
+        // qtePannel.SetActive(true); // TODO On devrait pas réouvrir le panel comme ça ?
         Debug.Log("Waited input is " + _waitedInput.Key);
     }
 

@@ -11,11 +11,11 @@ public class GameEvents : MonoBehaviour
         Instance = this;
     }
 
-    public event Action<int> OnRecipeFinished;
+    public event Action<Recipe> OnRecipeFinished;
 
-    public void RecipeFinished(int recipeScore)
+    public void RecipeFinished(Recipe recipe)
     {
-        OnRecipeFinished?.Invoke(recipeScore);
+        OnRecipeFinished?.Invoke(recipe);
     }
 
     public event Action<Recipe> OnRecipeStart;

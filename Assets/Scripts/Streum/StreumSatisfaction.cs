@@ -1,4 +1,5 @@
 ﻿using System;
+using Recipes;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -62,9 +63,9 @@ namespace Streum
             }
         }
 
-        private void OnRecipeFinished(int score)
+        private void OnRecipeFinished(Recipe recipe)
         {
-            _currentSatisfaction = Math.Min(maximumSatisfaction, _currentSatisfaction + score);
+            _currentSatisfaction = Math.Min(maximumSatisfaction, _currentSatisfaction + recipe.CurrentScore);
         }
 
         private void OnDestroy()
