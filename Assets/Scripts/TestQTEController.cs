@@ -38,9 +38,9 @@ public class TestQTEController : MonoBehaviour
     {
         if (!_started)
         {
-            var recipe = _cookbook[new Random().Next(_cookbook.Count)];
+            var recipe = new StuffedChickenSupreme();
             _descriptionField.text = recipe.Description;
-            Debug.Log("Recipe choosed !");
+            Debug.Log("Recipe chosen !");
             GameEvents.Instance.RecipeStart(recipe);
 
             _started = true;

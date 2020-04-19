@@ -7,7 +7,7 @@ namespace Streum
     public class StreumSatisfaction : MonoBehaviour
     {
         public int maximumSatisfaction;
-        public int satisfactionDecayRate;
+        public float satisfactionDecayRate;
         public float barUpdateRate;
 
         public Color highSatisfactionColor;

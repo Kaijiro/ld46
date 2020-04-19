@@ -23,7 +23,9 @@ namespace Streum
             Requirements = new List<Recipe>();
             _cookbook = new List<Recipe>()
             {
-                new SimpleRecipe()
+                new CatFoodCanRecipe(), new BigBowlOfMilkRecipe(), new CatnipLine(), // Level 1
+                new MixChickenSalmonRecipe(), new MixSalmonChickenRecipe(), // Level 2
+                new SalmonWithCatnipSauceRecipe(), new StuffedChickenSupreme() // Level 3
             };
         }
 

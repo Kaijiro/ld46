@@ -6,7 +6,7 @@
     public static QTEInput K_KEY = new QTEInput("QTE_Input_4", "K", "Serve the meal");
     public static QTEInput O_KEY = new QTEInput("QTE_Input_5", "O", "Open the food can");
     public static QTEInput L_KEY = new QTEInput("QTE_Input_6", "L", "Add the catnip");
-    public static QTEInput P_KEY = new QTEInput("QTE_Input_7", "P", "Pour the milk");
+    public static QTEInput P_KEY = new QTEInput("QTE_Input_7", "P", "Pour");
 
     public class QTEInput
     {
