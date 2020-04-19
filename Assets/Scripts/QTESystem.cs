@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Recipes;
 using UnityEngine;
 
@@ -24,7 +25,7 @@ public class QTESystem : MonoBehaviour
         {
             if (_currentRecipe == null) throw new ArgumentNullException();
 
-            if (Input.anyKeyDown)
+            if (Input.anyKeyDown && !PlayerIsTryingToMove())
             {
                 if (Input.GetButtonDown(_waitedInput.TechnicalKeyName))
                 {
@@ -58,6 +59,11 @@ public class QTESystem : MonoBehaviour
         _currentRecipe.Begin();
         _waitedInput = recipe.GetNextStroke();
         Debug.Log("Waited input is " + _waitedInput.Key);
+    }
+
+    private bool PlayerIsTryingToMove()
+    {
+        return Math.Abs(Input.GetAxis("Horizontal")) > 0.01 || Input.GetKeyDown("space");
     }
 
     private void OnDestroy()
