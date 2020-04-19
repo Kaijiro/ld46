@@ -133,6 +133,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 5635768268653634649}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1048835835 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5635768267507760296, guid: 0163b1d324a37534b835515089abe440,
+    type: 3}
+  m_PrefabInstance: {fileID: 5635768268653634649}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1848280318 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5635768267012186279, guid: 0163b1d324a37534b835515089abe440,
@@ -517,6 +523,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4564340089153311146, guid: 69cdb9b05cd27644aa7ab0eeec0a39c1,
+        type: 3}
+      propertyPath: qtePannel
+      value: 
+      objectReference: {fileID: 1048835835}
     - target: {fileID: 4564340089153311147, guid: 69cdb9b05cd27644aa7ab0eeec0a39c1,
         type: 3}
       propertyPath: m_Name
