@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Streum;
 
 public class Spawner : MonoBehaviour
 {
     public Pickable[] prefab;
     public Inventory inventoryScript;
     public Spawner[] otherSpawner;
+    public StreumRequirements streumRequirements;
 
     private bool free = true;
 
@@ -17,10 +19,18 @@ public class Spawner : MonoBehaviour
 
     private void Spawn (bool force)
     {
+        int max = prefab.Length;
+        Debug.Log(streumRequirements.Level);
+        // First level, go easy on player, just spawn useful item
+        if ( streumRequirements.Level == 1)
+        {
+            max = 2;
+        }
+
         if ( otherSpawner[0].isFree() || otherSpawner[1].isFree() || force )
         {
             free = false;
-            Pickable newObject = Instantiate(prefab[Random.Range(0, prefab.Length)], transform.position, Quaternion.identity);
+            Pickable newObject = Instantiate(prefab[Random.Range(0, max)], transform.position, Quaternion.identity);
             newObject.setSpawner(this);
         } else
         {
