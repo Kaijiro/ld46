@@ -955,6 +955,12 @@ PrefabInstance:
       objectReference: {fileID: 1079350300}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d74571876f00684988e3d935964d378, type: 3}
+--- !u!1 &817343153 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5635768267012186279, guid: 0163b1d324a37534b835515089abe440,
+    type: 3}
+  m_PrefabInstance: {fileID: 2067264817}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &906533340
 GameObject:
   m_ObjectHideFlags: 0
@@ -1302,6 +1308,21 @@ PrefabInstance:
       propertyPath: requirementDisplayer1
       value: 
       objectReference: {fileID: 1683509187}
+    - target: {fileID: 5613542295781268197, guid: 7888cf29b06146d4fb26ed1f2143a64b,
+        type: 3}
+      propertyPath: level1Helps
+      value: 
+      objectReference: {fileID: 1677166221}
+    - target: {fileID: 5613542295781268197, guid: 7888cf29b06146d4fb26ed1f2143a64b,
+        type: 3}
+      propertyPath: level2Helps
+      value: 
+      objectReference: {fileID: 1715010265}
+    - target: {fileID: 5613542295781268197, guid: 7888cf29b06146d4fb26ed1f2143a64b,
+        type: 3}
+      propertyPath: level3Helps
+      value: 
+      objectReference: {fileID: 817343153}
     - target: {fileID: 5613542295781268202, guid: 7888cf29b06146d4fb26ed1f2143a64b,
         type: 3}
       propertyPath: m_Name
@@ -1763,6 +1784,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1677166221 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5635768267714441775, guid: 0163b1d324a37534b835515089abe440,
+    type: 3}
+  m_PrefabInstance: {fileID: 2067264817}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1683509187 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 239201435858203670, guid: 0163b1d324a37534b835515089abe440,
@@ -1775,7 +1802,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2067264817}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1686759498
+--- !u!114 &1686759499
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1795,6 +1822,12 @@ MonoBehaviour:
   canSprite: {fileID: 21300000, guid: 3fb39c043c82dbe40ae9db9d5e1e0bbb, type: 3}
   chickenSprite: {fileID: 21300000, guid: 8c32deb3d8217de43b296e601cdc1d98, type: 3}
   salmonSprite: {fileID: 21300000, guid: 0022af3d4e6081042b19ee5faeb8e6fb, type: 3}
+--- !u!1 &1715010265 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5635768268741311900, guid: 0163b1d324a37534b835515089abe440,
+    type: 3}
+  m_PrefabInstance: {fileID: 2067264817}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1762926836
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4590,6 +4623,56 @@ PrefabInstance:
       propertyPath: m_Name
       value: Requirements
       objectReference: {fileID: 0}
+    - target: {fileID: 2833750320240728017, guid: 0163b1d324a37534b835515089abe440,
+        type: 3}
+      propertyPath: m_Text
+      value: C - Add chicken
+      objectReference: {fileID: 0}
+    - target: {fileID: 2833750320281867297, guid: 0163b1d324a37534b835515089abe440,
+        type: 3}
+      propertyPath: m_Name
+      value: CommandHelp - P
+      objectReference: {fileID: 0}
+    - target: {fileID: 2833750320867270482, guid: 0163b1d324a37534b835515089abe440,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2833750320867270483, guid: 0163b1d324a37534b835515089abe440,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -60.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2833750320867270483, guid: 0163b1d324a37534b835515089abe440,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 49.999985
+      objectReference: {fileID: 0}
+    - target: {fileID: 2833750321137939552, guid: 0163b1d324a37534b835515089abe440,
+        type: 3}
+      propertyPath: m_Name
+      value: CommandHelp - A
+      objectReference: {fileID: 0}
+    - target: {fileID: 2833750321383474262, guid: 0163b1d324a37534b835515089abe440,
+        type: 3}
+      propertyPath: m_Text
+      value: P - Pour ingredient
+      objectReference: {fileID: 0}
+    - target: {fileID: 2833750321424222119, guid: 0163b1d324a37534b835515089abe440,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -100.28999
+      objectReference: {fileID: 0}
+    - target: {fileID: 2833750321913368357, guid: 0163b1d324a37534b835515089abe440,
+        type: 3}
+      propertyPath: m_Text
+      value: S - Add salmon
+      objectReference: {fileID: 0}
+    - target: {fileID: 2833750322171192343, guid: 0163b1d324a37534b835515089abe440,
+        type: 3}
+      propertyPath: m_Text
+      value: A - Add catnip
+      objectReference: {fileID: 0}
     - target: {fileID: 5635768267187700626, guid: 0163b1d324a37534b835515089abe440,
         type: 3}
       propertyPath: m_Name
@@ -4700,10 +4783,20 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5635768267436147204, guid: 0163b1d324a37534b835515089abe440,
+        type: 3}
+      propertyPath: m_Text
+      value: G - Serve meal
+      objectReference: {fileID: 0}
     - target: {fileID: 5635768267507760296, guid: 0163b1d324a37534b835515089abe440,
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5635768267714441775, guid: 0163b1d324a37534b835515089abe440,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5635768268037011276, guid: 0163b1d324a37534b835515089abe440,
         type: 3}
@@ -4729,6 +4822,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -171
+      objectReference: {fileID: 0}
+    - target: {fileID: 5635768268733649523, guid: 0163b1d324a37534b835515089abe440,
+        type: 3}
+      propertyPath: m_Name
+      value: CommandHelp - G
+      objectReference: {fileID: 0}
+    - target: {fileID: 5635768268741311900, guid: 0163b1d324a37534b835515089abe440,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7563994340314018698, guid: 0163b1d324a37534b835515089abe440,
         type: 3}

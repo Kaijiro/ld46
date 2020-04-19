@@ -10,6 +10,9 @@ namespace Streum
     {
         public float newRequirementProbability;
         public int maxRequirementNumber;
+        
+        public GameObject level2Helps;
+        public GameObject level3Helps;
 
         public int Level { get; private set; }
         public List<Recipe> Requirements { get; private set; }
@@ -92,6 +95,7 @@ namespace Streum
                 if (StreumShouldLevelUp())
                 {
                     Level++;
+                    UpdateActionListPanel();
                     Debug.Log("LOKAT has reached a new level ! We're level " + Level);
                 }
             }
@@ -110,6 +114,15 @@ namespace Streum
 
             return _currentProgress[0] >= nextLevelCriteria[0] && _currentProgress[1] >= nextLevelCriteria[1] &&
                    _currentProgress[2] >= nextLevelCriteria[2];
+        }
+        
+        private void UpdateActionListPanel()
+        {
+            switch (Level)
+            {
+                case 2: level2Helps.SetActive(true); break;
+                case 3: level3Helps.SetActive(true); break;
+            }
         }
 
         private void OnDestroy()
