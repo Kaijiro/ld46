@@ -14,6 +14,7 @@ public class Kitchen : MonoBehaviour
 
     private Text _descriptionField;
     private Recipe currentRecipe;
+    public GameObject qtePannel;
     public GameObject recipeDescriptionText;
     public GameObject level1Helps;
     public GameObject level2Helps;
@@ -48,28 +49,113 @@ public class Kitchen : MonoBehaviour
             Debug.Log("Hello Brian !");
             if (recipeAvailable)
             {
-                foreach (string itemNeeded in currentRecipe.Ingredients)
+                Inventory inventoryScript = other.GetComponent<Inventory>();
+                if (!CheckRecipeTrigger(inventoryScript))
                 {
-                    Debug.Log("Do you have " + itemNeeded + " ?");
-                    takeItem = true;
-                    Inventory inventoryScript = other.GetComponent<Inventory>();
+                    foreach (string itemNeeded in currentRecipe.Ingredients)
+                    {
+                        Debug.Log("Do you have " + itemNeeded + " ?");
+                        takeItem = true;
 
-                    if (inventoryScript.HasItem(itemNeeded) && (currentQtyStocked < maxContent))
-                    {
-                        Debug.Log("Great, thank you Brian !");
-                        inventoryScript.RemoveItem(itemNeeded);
-                        stockContent[currentQtyStocked] = itemNeeded;
-                        currentQtyStocked++;
-                    }
-                    else
-                    {
-                        if (currentQtyStocked >= maxContent)
+                        if (inventoryScript.HasItem(itemNeeded) && (currentQtyStocked < maxContent))
                         {
-                            Debug.Log("max stock frigo reached");
+                            Debug.Log("Great, thank you Brian !");
+                            inventoryScript.RemoveItem(itemNeeded);
+                            stockContent[currentQtyStocked] = itemNeeded;
+                            currentQtyStocked++;
+                        }
+                        else
+                        {
+                            if (currentQtyStocked >= maxContent)
+                            {
+                                Debug.Log("max stock frigo reached");
+                            }
                         }
                     }
-                }                    
+                }
             }
+        }
+    }
+
+
+    private bool CheckRecipeTrigger(Inventory playerInventory)
+    {
+        bool go = false;
+        bool found = false;
+        int max = currentRecipe.Ingredients.Length;
+        string[] removeFromKitchen = new string[max];
+        int idxFK = 0;
+        int idxFP = 0;
+        string[] removeFromPlayer = new string[max];
+        int gotIt = 0;
+        foreach (string itemNeeded in currentRecipe.Ingredients)
+        {
+            // Check if everything is available
+            found = false;
+            // First in kitchen stock
+            foreach( string itemStocked in stockContent)
+            {
+                if ( itemStocked == itemNeeded)
+                {
+                    gotIt++;
+                    removeFromKitchen[idxFK] = itemNeeded;
+                    idxFK++;
+                    found = true;
+                    break;
+                }
+            }
+            // then in user inventory
+            if (playerInventory.HasItem(itemNeeded) && !found)
+            {
+                gotIt++;
+                removeFromPlayer[idxFP] = itemNeeded;
+                idxFP++;
+                found = true;
+            }
+        }
+
+        go = (gotIt == max);
+
+        if (go)
+        {
+            // Only once sure we have everything, remove from different inventory
+            foreach (string itemToTake in removeFromPlayer)
+            {
+                playerInventory.RemoveItem(itemToTake);
+            }
+            foreach (string itemToTake in removeFromKitchen)
+            {
+                RemoveItem(itemToTake);
+            }
+
+            qtePannel.SetActive(true);
+            recipeAvailable = false;
+            GameEvents.Instance.RecipeStart(currentRecipe);
+            return true;
+        }
+
+        return false;
+    }
+
+    private void RemoveItem ( string itemToRemove)
+    {
+        int index = 0;
+        bool removed = false;
+        foreach (string tmp in stockContent)
+        {
+            if (tmp == itemToRemove || removed)
+            {
+                if (index + 1 < maxContent)
+                {
+                    stockContent[index] = stockContent[index + 1];
+                    removed = true;
+                }
+                else
+                {
+                    stockContent[index] = null;
+                }
+            }
+            index++;
         }
     }
 
