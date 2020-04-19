@@ -176,6 +176,7 @@ public class Kitchen : MonoBehaviour
                 }
 
                 qtePannel.SetActive(true);
+                _descriptionField.text = currentRecipe.Description;
                 GameEvents.Instance.RecipeStart(currentRecipe);
                 return true;
             }
