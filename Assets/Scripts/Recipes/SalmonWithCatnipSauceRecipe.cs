@@ -14,7 +14,7 @@ namespace Recipes
             Level = 3;
             Strokes = new List<QTEButtons.QTEInput>
             {
-                QTEButtons.L_KEY, QTEButtons.P_KEY, QTEButtons.I_KEY, QTEButtons.J_KEY, QTEButtons.K_KEY
+                QTEButtons.A_KEY, QTEButtons.P_KEY, QTEButtons.M_KEY, QTEButtons.S_KEY, QTEButtons.G_KEY
             };
             Ingredients = new[] {"catnip", "milk", "salmon"};
         }
