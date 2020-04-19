@@ -10,15 +10,11 @@ using InventoryItems;
 public class Kitchen : MonoBehaviour
 {
     private bool takeItem = false;
-    public int maxContent = 3;
-    
+    public int maxContent = 3;    
 
     private Text _descriptionField;
     public GameObject qtePannel;
     public GameObject recipeDescriptionText;
-    public GameObject level1Helps;
-    public GameObject level2Helps;
-    public GameObject level3Helps;
     public Sprite[] itemSprites;
     public Transform stockUI;
     public GameObject requirementDisplayer1;
@@ -34,7 +30,6 @@ public class Kitchen : MonoBehaviour
     void Start()
     {
         stockUIContent = new string[maxContent];
-        UpdateActionListPanel();
     }
 
     private void Awake()
@@ -247,8 +242,4 @@ public class Kitchen : MonoBehaviour
         HideRequirements();
     }
 
-    private void UpdateActionListPanel()
-    {
-
-    }
 }

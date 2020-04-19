@@ -10,9 +10,10 @@ public class PlayerMovement : MonoBehaviour
 	public LayerMask groundLayer;           
 
 	public float jumpForce = 6.3f;          
-	public bool isJumping;					
+	public bool isJumping;
 
-	PlayerInput input;						
+	PlayerInput input;
+	Inventory inventory;
 	BoxCollider2D bodyCollider;				
 	Rigidbody2D rigidBody;					
 
@@ -26,13 +27,20 @@ public class PlayerMovement : MonoBehaviour
 		rigidBody = GetComponent<Rigidbody2D>();
 		bodyCollider = GetComponent<BoxCollider2D>();
 		originalXScale = transform.localScale.x;
+		inventory = GetComponent<Inventory>();
 	}
 
 	void FixedUpdate()
 	{
 		PhysicsCheck();
-		GroundMovement();		
+		GroundMovement();
 		MidAirMovement();
+
+		if (input.trashPressed)
+		{
+			inventory.Empty();
+			input.trashPressed = false;
+		}
 	}
 
 	void PhysicsCheck()
@@ -52,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
 			isJumping = false;
 	}
 
-		void GroundMovement()
+	void GroundMovement()
 	{
 		float speed = groundSpeed;
 		if (isJumping)

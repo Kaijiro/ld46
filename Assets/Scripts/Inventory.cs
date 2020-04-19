@@ -108,6 +108,19 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    public void Empty()
+    {
+        foreach ( InventoryItem tmp in playerInventory )
+        {
+            while (tmp.quantity > 0)
+            {
+                UpdateInventoryUI(tmp.name, "remove");
+                tmp.quantity--;
+            }                
+        }
+        currentQty = 0;
+    }
+
     public bool HasItem(string itemNeeded)
     {
         foreach (InventoryItem tmp in playerInventory)
