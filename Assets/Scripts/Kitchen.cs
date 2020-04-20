@@ -42,6 +42,7 @@ public class Kitchen : MonoBehaviour
         if (other.tag == "Player" && !inKitchen)
         {
             inKitchen = true;
+
             Debug.Log("Hello Brian !");
             if (streumRequirements.Requirements.Count > 0)
             {

@@ -157,17 +157,13 @@ public class Inventory : MonoBehaviour
         int qty = 0;
         foreach (InventoryItem tmp in playerInventory)
         {
+            qty = 0;
             while (qty < tmp.quantity)
             {
                 copyInventory[index] = tmp.name;
                 index++;
                 qty++;
             }
-        }
-
-        foreach (string tmp in copyInventory)
-        {
-            Debug.Log(tmp);
         }
 
         return copyInventory;

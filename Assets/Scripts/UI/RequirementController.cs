@@ -97,7 +97,7 @@ namespace UI
                     imageHolder.sprite = salmonSprite;
                     break;
                 default:
-                    Debug.Log("WTF ? " + ingredient);
+                    // Debug.Log("WTF ? " + ingredient);
                     break;
             }
         }
