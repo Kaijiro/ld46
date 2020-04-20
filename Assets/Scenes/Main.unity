@@ -4348,16 +4348,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2833750320867270483, guid: 0163b1d324a37534b835515089abe440,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -60.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2833750320867270483, guid: 0163b1d324a37534b835515089abe440,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 49.999985
-      objectReference: {fileID: 0}
     - target: {fileID: 2833750321137939552, guid: 0163b1d324a37534b835515089abe440,
         type: 3}
       propertyPath: m_Name
@@ -4368,11 +4358,6 @@ PrefabInstance:
       propertyPath: m_Text
       value: P - Pour ingredient
       objectReference: {fileID: 0}
-    - target: {fileID: 2833750321424222119, guid: 0163b1d324a37534b835515089abe440,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -100.28999
-      objectReference: {fileID: 0}
     - target: {fileID: 2833750321913368357, guid: 0163b1d324a37534b835515089abe440,
         type: 3}
       propertyPath: m_Text
@@ -4382,6 +4367,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Text
       value: A - Add catnip
+      objectReference: {fileID: 0}
+    - target: {fileID: 5635768266837594339, guid: 0163b1d324a37534b835515089abe440,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -45.499996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5635768266837594339, guid: 0163b1d324a37534b835515089abe440,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 318
+      objectReference: {fileID: 0}
+    - target: {fileID: 5635768266837594339, guid: 0163b1d324a37534b835515089abe440,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 570.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5635768266837594339, guid: 0163b1d324a37534b835515089abe440,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 78.2
       objectReference: {fileID: 0}
     - target: {fileID: 5635768267187700626, guid: 0163b1d324a37534b835515089abe440,
         type: 3}
@@ -4502,6 +4507,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5635768267595782260, guid: 0163b1d324a37534b835515089abe440,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5635768267714441775, guid: 0163b1d324a37534b835515089abe440,
         type: 3}
