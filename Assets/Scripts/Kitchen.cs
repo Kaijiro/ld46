@@ -9,7 +9,7 @@ using InventoryItems;
 
 public class Kitchen : MonoBehaviour
 {
-    private bool takeItem = false;
+    private bool inKitchen = false;
     public int maxContent = 3;    
 
     private Text _descriptionField;
@@ -39,8 +39,9 @@ public class Kitchen : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player" && !inKitchen)
         {
+            inKitchen = true;
             Debug.Log("Hello Brian !");
             if (streumRequirements.Requirements.Count > 0)
             {
@@ -53,7 +54,7 @@ public class Kitchen : MonoBehaviour
                         foreach (string itemNeeded in currentRecipe.Ingredients)
                         {
                             Debug.Log("Do you have " + itemNeeded + " ?");
-                            takeItem = true;
+                            
                             if (inventoryScript.HasItem(itemNeeded) && (currentQtyStocked < maxContent))
                             {
                                 Debug.Log("Great, thank you Brian !");
@@ -237,7 +238,7 @@ public class Kitchen : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        takeItem = false;
+        inKitchen = false;
         HideRequirements();
     }
 
