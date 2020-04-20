@@ -24,4 +24,18 @@ public class GameEvents : MonoBehaviour
     {
         OnRecipeStart?.Invoke(recipe);
     }
+
+    public event Action<int> OnLevelUp;
+
+    public void LevelUp(int level)
+    {
+        OnLevelUp?.Invoke(level);
+    }
+
+    public event Action OnGameOver;
+
+    public void GameOver()
+    {
+        OnGameOver?.Invoke();
+    }
 }
