@@ -8,6 +8,7 @@ namespace Recipes
         {
             Name = "Mix Chicken/Salmon";
             BaseScore = 20;
+            Malus = 4;
             Description = "You have to add the chicken, then the salmon, mix both ingredients and then serve the meal";
             Level = 2;
             Strokes = new List<QTEButtons.QTEInput>
@@ -15,11 +16,6 @@ namespace Recipes
                 QTEButtons.C_KEY, QTEButtons.S_KEY, QTEButtons.M_KEY, QTEButtons.G_KEY
             };
             Ingredients = new[] {"chicken", "salmon"};
-        }
-        
-        public override void DecreaseScore()
-        {
-            CurrentScore -= 4;
         }
     }
 }

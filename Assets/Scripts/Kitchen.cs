@@ -1,11 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Recipes;
+using Streum;
 using UnityEngine;
 using UnityEngine.UI;
-using Recipes;
-using Streum;
-using Random = System.Random;
-using InventoryItems;
 
 public class Kitchen : MonoBehaviour
 {
@@ -13,7 +9,6 @@ public class Kitchen : MonoBehaviour
     public int maxContent = 3;    
 
     private Text _descriptionField;
-    public GameObject qtePannel;
     public GameObject recipeDescriptionText;
     public Sprite[] itemSprites;
     public Transform stockUI;
@@ -192,14 +187,13 @@ public class Kitchen : MonoBehaviour
                 }
                 foreach (string itemToTake in removeFromKitchen)
                 {
-                    if (itemToTake != null && itemToTake != "")
+                    if (!string.IsNullOrEmpty(itemToTake))
                     {
                         Debug.Log("item to remove frigo" + itemToTake);
                         RemoveItem(itemToTake);
                     }
                 }
 
-                qtePannel.SetActive(true);
                 _descriptionField.text = currentRecipe.Description;
                 GameEvents.Instance.RecipeStart(currentRecipe);
                 return true;
@@ -242,5 +236,4 @@ public class Kitchen : MonoBehaviour
         inKitchen = false;
         HideRequirements();
     }
-
 }

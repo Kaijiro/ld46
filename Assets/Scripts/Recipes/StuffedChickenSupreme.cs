@@ -8,6 +8,7 @@ namespace Recipes
         {
             Name = "Stuffed chicken supreme";
             BaseScore = 30;
+            Malus = 10;
             Description =
                 "To create this divine dish, the servant will have to follow those instructions VERY carefully. " +
                 "First of all, arrange the first parts of the chicken in the dish. Then carefully open the can, " +
@@ -19,11 +20,6 @@ namespace Recipes
                 QTEButtons.C_KEY, QTEButtons.O_KEY, QTEButtons.P_KEY, QTEButtons.C_KEY, QTEButtons.G_KEY
             };
             Ingredients = new[] {"chicken", "chicken", "can"};
-        }
-        
-        public override void DecreaseScore()
-        {
-            CurrentScore -= 10;
         }
     }
 }

@@ -8,6 +8,7 @@ namespace Recipes
         {
             Name = "Salmon with catnip sauce";
             BaseScore = 30;
+            Malus = 10;
             Description =
                 "To prepare this delicious meal, our dear servant will have to accomplish many tasks ! First of all, " +
                 "prepare the sauce by adding the catnip and the milk and mix them together. Delicately add the best " +
@@ -18,11 +19,6 @@ namespace Recipes
                 QTEButtons.A_KEY, QTEButtons.P_KEY, QTEButtons.M_KEY, QTEButtons.S_KEY, QTEButtons.G_KEY
             };
             Ingredients = new[] {"catnip", "milk", "salmon"};
-        }
-        
-        public override void DecreaseScore()
-        {
-            CurrentScore -= 10;
         }
     }
 }
