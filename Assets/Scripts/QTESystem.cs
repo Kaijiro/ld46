@@ -10,6 +10,7 @@ public class QTESystem : MonoBehaviour
     private QTEButtons.QTEInput _waitedInput;
     private bool _waitingForQteInput;
     private Vector3 _originalPosition;
+    private AudioSource _audioSource;
 
     public GameObject qtePannel;
     public Image feedbackHolder;
@@ -18,11 +19,16 @@ public class QTESystem : MonoBehaviour
     public Sprite goodSprite;
     public Sprite badSprite;
 
+    public AudioClip perfectSound;
+    public AudioClip goodSound;
+    public AudioClip badSound;
+
     private void Start()
     {
         GameEvents.Instance.OnRecipeStart += OnRecipeStart;
 
         _originalPosition = feedbackHolder.rectTransform.position;
+        _audioSource = GetComponentInParent<AudioSource>();
     }
     
     // Update is called once per frame
@@ -65,17 +71,33 @@ public class QTESystem : MonoBehaviour
 
     private void DisplayRecipeFeedback()
     {
+        AudioClip soundToPlay;
+        
         switch (_currentRecipe.Result)
         {
-            case RecipeResult.PERFECT: feedbackHolder.sprite = perfectSprite; break;
-            case RecipeResult.NICE: feedbackHolder.sprite = goodSprite; break;
-            case RecipeResult.BAD: feedbackHolder.sprite = badSprite; break;
+            case RecipeResult.PERFECT: 
+                feedbackHolder.sprite = perfectSprite;
+                soundToPlay = perfectSound;
+                break;
+            case RecipeResult.NICE: 
+                feedbackHolder.sprite = goodSprite;
+                soundToPlay = goodSound;
+                break;
+            case RecipeResult.BAD: 
+                feedbackHolder.sprite = badSprite;
+                soundToPlay = badSound;
+                break;
+            default:
+                soundToPlay = badSound;
+                break;
         }
         
         feedbackHolder.color = Color.white;
         feedbackHolder.rectTransform.position = _originalPosition; 
         
         StartCoroutine(nameof(MoveAndFadeText));
+        
+        _audioSource.PlayOneShot(soundToPlay);
     }
 
     private void OnRecipeStart(Recipe recipe)
