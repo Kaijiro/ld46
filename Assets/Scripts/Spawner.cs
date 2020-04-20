@@ -29,7 +29,31 @@ public class Spawner : MonoBehaviour
         if ( otherSpawner[0].isFree() || otherSpawner[1].isFree() || force )
         {
             free = false;
-            Pickable newObject = Instantiate(prefab[Random.Range(0, max)], transform.position, Quaternion.identity);
+            Vector3 newPos = transform.position;
+            int toSpawn = Random.Range(0, max);
+            float modifier = 0f;
+            switch(toSpawn)
+            {
+                case 0:
+                    modifier = 0.12f; // can
+                    break;
+                case 1:
+                    modifier = 0.239f; // herb
+                    break;
+                case 2:
+                    modifier = 0.111f; // milk
+                    break;
+                case 3:
+                    modifier = 0.258f; // salmon
+                    break;
+                case 4:
+                    modifier = 0.12f; // chicken
+                    break;
+            }
+
+            newPos.y = newPos.y - modifier;
+
+            Pickable newObject = Instantiate(prefab[toSpawn], newPos, Quaternion.identity);
             newObject.setSpawner(this);
         } else
         {
