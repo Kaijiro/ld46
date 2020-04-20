@@ -2,6 +2,7 @@
 using Recipes;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 namespace Streum
 {
@@ -22,6 +23,12 @@ namespace Streum
         private Image _fillingImage;
         private int _level;
 
+        private float score;
+        private bool updateScore = true;
+
+        public float deltaCatisfaction = 1f;
+        private float currentDelta = 0f;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -29,24 +36,48 @@ namespace Streum
             _slider = GetComponent<Slider>();
             _fillingImage = _slider.fillRect.GetComponent<Image>();
             _level = 1;
-            
+            currentDelta = deltaCatisfaction;
+            score = 0f;
+            updateScore = true;
+
             InvokeRepeating(nameof(DecreaseSatisfaction), 0f, barUpdateRate);
 
             GameEvents.Instance.OnRecipeFinished += OnRecipeFinished;
-            GameEvents.Instance.OnLevelUp += OnLevelUp;
+            GameEvents.Instance.OnLevelUp += OnLevelUp;          
+            
+        }
+
+        void Update()
+        {
+            if (updateScore)
+            {
+                score += Time.deltaTime;
+            }
+            
+            if (currentDelta < deltaCatisfaction)
+            {
+                currentDelta += Time.deltaTime ;
+            }
+              
         }
 
         void DecreaseSatisfaction()
         {
-            _currentSatisfaction -= satisfactionDecayRate[_level] * barUpdateRate;
+            if (currentDelta >= deltaCatisfaction)
+            {
+                _currentSatisfaction -= satisfactionDecayRate[_level - 1] * barUpdateRate;
+            }                 
 
             UpdateSlider();
 
             if (_currentSatisfaction <= 0)
             {
                 Debug.Log("Game Over !");
-                GameEvents.Instance.GameOver();
+                //GameEvents.Instance.GameOver();
+                updateScore = false;
+                PlayerPrefs.SetFloat("newScore", score);
                 CancelInvoke(nameof(DecreaseSatisfaction));
+                SceneManager.LoadScene(2);
             }
         }
 
@@ -70,6 +101,7 @@ namespace Streum
 
         private void OnRecipeFinished(Recipe recipe)
         {
+            currentDelta = 0f;
             _currentSatisfaction = Math.Min(maximumSatisfaction, _currentSatisfaction + recipe.CurrentScore);
         }
 

@@ -913,6 +913,41 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 8679624651316531777, guid: bff9c7d11beb0a44ca55716b22fd923c,
+        type: 3}
+      propertyPath: satisfactionDecayRate.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8679624651316531777, guid: bff9c7d11beb0a44ca55716b22fd923c,
+        type: 3}
+      propertyPath: satisfactionDecayRate.Array.data[0]
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8679624651316531777, guid: bff9c7d11beb0a44ca55716b22fd923c,
+        type: 3}
+      propertyPath: satisfactionDecayRate.Array.data[1]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8679624651316531777, guid: bff9c7d11beb0a44ca55716b22fd923c,
+        type: 3}
+      propertyPath: satisfactionDecayRate.Array.data[2]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8679624651316531777, guid: bff9c7d11beb0a44ca55716b22fd923c,
+        type: 3}
+      propertyPath: satisfactionDecayRate.Array.data[3]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8679624651316531777, guid: bff9c7d11beb0a44ca55716b22fd923c,
+        type: 3}
+      propertyPath: satisfactionDecayRate.Array.data[4]
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8679624651316531777, guid: bff9c7d11beb0a44ca55716b22fd923c,
+        type: 3}
+      propertyPath: deltaCatisfaction
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8679624651316531783, guid: bff9c7d11beb0a44ca55716b22fd923c,
         type: 3}
       propertyPath: m_Name

@@ -12,10 +12,14 @@ public class PlayerMovement : MonoBehaviour
 	public float jumpForce = 6.3f;          
 	public bool isJumping;
 
+	public Sprite Iddle;
+	public Sprite Falling;
+
 	PlayerInput input;
 	Inventory inventory;
 	BoxCollider2D bodyCollider;				
-	Rigidbody2D rigidBody;					
+	Rigidbody2D rigidBody;
+	SpriteRenderer spriteRenderer;
 
 	float originalXScale;					
 	int direction = 1;						
@@ -28,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
 		bodyCollider = GetComponent<BoxCollider2D>();
 		originalXScale = transform.localScale.x;
 		inventory = GetComponent<Inventory>();
+		spriteRenderer = GetComponent<SpriteRenderer>();
 	}
 
 	void FixedUpdate()
@@ -57,7 +62,10 @@ public class PlayerMovement : MonoBehaviour
 		/**/
 
 		if (leftCheck || rightCheck)
+		{
 			isJumping = false;
+			spriteRenderer.sprite = Iddle;
+		}
 	}
 
 	void GroundMovement()
@@ -79,10 +87,15 @@ public class PlayerMovement : MonoBehaviour
 		{
 			isJumping = true;
 			rigidBody.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
-		}
+		}	
 
 		if (rigidBody.velocity.y < maxFallSpeed)
 			rigidBody.velocity = new Vector2(rigidBody.velocity.x, maxFallSpeed);
+
+		if ( rigidBody.velocity.y < -1.5f)
+        {
+			spriteRenderer.sprite = Falling;
+		}
 	}
 
 	void FlipCharacterDirection()
