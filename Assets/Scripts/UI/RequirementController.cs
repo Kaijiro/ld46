@@ -77,6 +77,8 @@ namespace UI
         private void SetSpriteToImageForIngredient(Image imageHolder, string ingredient)
         {
             imageHolder.color = Color.white;
+            imageHolder.type = Image.Type.Simple;
+            imageHolder.preserveAspect = true;
             switch (ingredient)
             {
                 case "herb":
