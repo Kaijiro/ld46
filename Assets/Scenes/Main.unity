@@ -5673,6 +5673,11 @@ PrefabInstance:
       propertyPath: satisfactionDecayRate
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5635768268439490948, guid: 0163b1d324a37534b835515089abe440,
+        type: 3}
+      propertyPath: maximumSatisfaction
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 5635768268439490949, guid: 0163b1d324a37534b835515089abe440,
         type: 3}
       propertyPath: m_AnchoredPosition.y
