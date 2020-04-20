@@ -63,6 +63,12 @@ namespace Streum
 
                 var randomizer = new Random();
                 var shuffledList = new List<Recipe>(availableRecipes.OrderBy(item => randomizer.Next()));
+
+                foreach ( Recipe curDesire in Requirements)
+                {
+                    shuffledList.Remove(curDesire);
+                }
+
                 var randomIndex = randomizer.Next(shuffledList.Count);
                 var requirement = shuffledList[randomIndex];
 

@@ -9,7 +9,7 @@ public class QTESystem : MonoBehaviour
     private Recipe _currentRecipe;
     private QTEButtons.QTEInput _waitedInput;
     private bool _waitingForQteInput;
-    private RectTransform _originalFeedbackHolderPosition;
+    private Vector3 _originalPosition;
 
     public GameObject qtePannel;
     public Image feedbackHolder;
@@ -22,7 +22,7 @@ public class QTESystem : MonoBehaviour
     {
         GameEvents.Instance.OnRecipeStart += OnRecipeStart;
 
-        _originalFeedbackHolderPosition = feedbackHolder.rectTransform;
+        _originalPosition = feedbackHolder.rectTransform.position;
     }
     
     // Update is called once per frame
@@ -73,7 +73,8 @@ public class QTESystem : MonoBehaviour
         }
         
         feedbackHolder.color = Color.white;
-        feedbackHolder.rectTransform.position = _originalFeedbackHolderPosition.position;
+        feedbackHolder.rectTransform.position = _originalPosition; 
+        
         StartCoroutine(nameof(MoveAndFadeText));
     }
 
