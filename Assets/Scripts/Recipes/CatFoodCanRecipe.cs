@@ -8,6 +8,7 @@ namespace Recipes
         {
             Name = "Cat food can";
             BaseScore = 10;
+            Malus = 1;
             Description = "You have to open the food can, pour it then serve !";
             Level = 1;
             Strokes = new List<QTEButtons.QTEInput>
@@ -15,11 +16,6 @@ namespace Recipes
                 QTEButtons.O_KEY, QTEButtons.P_KEY, QTEButtons.G_KEY
             };
             Ingredients = new[] {"can"};
-        }
-
-        public override void DecreaseScore()
-        {
-            CurrentScore--;
         }
     }
 }

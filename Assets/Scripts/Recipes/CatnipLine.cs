@@ -8,6 +8,7 @@ namespace Recipes
         {
             Name = "Catnip Line";
             BaseScore = 10;
+            Malus = 1;
             Description =
                 "Stop judging me ! Just put this catnip in the mixer, mix it and serve it in a line so I can take it";
             Level = 1;
@@ -16,11 +17,6 @@ namespace Recipes
                 QTEButtons.A_KEY, QTEButtons.M_KEY, QTEButtons.G_KEY
             };
             Ingredients = new[] {"herb"};
-        }
-        
-        public override void DecreaseScore()
-        {
-            CurrentScore -= 1;
         }
     }
 }
