@@ -2,6 +2,7 @@
 using Recipes;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 namespace Streum
 {
@@ -22,6 +23,9 @@ namespace Streum
         private Image _fillingImage;
         private int _level;
 
+        private float score;
+        private bool updateScore = true;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -34,19 +38,33 @@ namespace Streum
 
             GameEvents.Instance.OnRecipeFinished += OnRecipeFinished;
             GameEvents.Instance.OnLevelUp += OnLevelUp;
+            score = 0f;
+            updateScore = true;
+        }
+
+        void Update()
+        {
+            if (updateScore)
+            {
+                score += Time.deltaTime;
+            }
+                
         }
 
         void DecreaseSatisfaction()
         {
-            _currentSatisfaction -= satisfactionDecayRate[_level] * barUpdateRate;
+            _currentSatisfaction -= satisfactionDecayRate[_level - 1] * barUpdateRate;
 
             UpdateSlider();
 
             if (_currentSatisfaction <= 0)
             {
                 Debug.Log("Game Over !");
-                GameEvents.Instance.GameOver();
+                //GameEvents.Instance.GameOver();
+                updateScore = false;
+                PlayerPrefs.SetFloat("newScore", score);
                 CancelInvoke(nameof(DecreaseSatisfaction));
+                SceneManager.LoadScene(2);
             }
         }
 
