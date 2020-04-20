@@ -18,7 +18,7 @@ namespace Recipes
             {
                 QTEButtons.A_KEY, QTEButtons.P_KEY, QTEButtons.M_KEY, QTEButtons.S_KEY, QTEButtons.G_KEY
             };
-            Ingredients = new[] {"catnip", "milk", "salmon"};
+            Ingredients = new[] {"herb", "milk", "salmon"};
         }
     }
 }
