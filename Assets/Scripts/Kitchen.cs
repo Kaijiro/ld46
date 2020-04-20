@@ -25,13 +25,6 @@ public class Kitchen : MonoBehaviour
     void Start()
     {
         stockUIContent = new string[maxContent];
-
-        GameEvents.Instance.OnRecipeFinished += OnRecipeFinished;
-    }
-
-    public void OnRecipeFinished(Recipe recipe)
-    {
-        DisplayRequirements();
     }
 
     private void Awake()
@@ -82,7 +75,6 @@ public class Kitchen : MonoBehaviour
                                         itemSpriteIdx = 4;
                                         break;
                                 }
-                                Debug.Log(currentQtyStocked);
                                 stockUI.GetChild(currentQtyStocked).GetComponent<SpriteRenderer>().sprite = itemSprites[itemSpriteIdx];
                                 stockUIContent[currentQtyStocked] = itemNeeded;
                                 currentQtyStocked++;
@@ -128,11 +120,11 @@ public class Kitchen : MonoBehaviour
 
     private bool CheckRecipeTrigger(Inventory playerInventory)
     {
-        string[] tmpPlayerInventory = playerInventory.GetInventoryItems();
-        string[] tmpStockContent = (string[])stockUIContent.Clone();
-
         foreach (Recipe currentRecipe in streumRequirements.Requirements)
         {
+            string[] tmpPlayerInventory = playerInventory.GetInventoryItems();
+            string[] tmpStockContent = (string[])stockUIContent.Clone();
+
             bool go = false;
             bool found = false;
             int max = currentRecipe.Ingredients.Length;
@@ -180,8 +172,7 @@ public class Kitchen : MonoBehaviour
                 }
             }
 
-            go = (gotIt == max);
-            
+            go = (gotIt == max);            
 
             if (go)
             {
@@ -217,7 +208,7 @@ public class Kitchen : MonoBehaviour
         {
             if (tmp == itemToRemove)
             {
-                currentQtyStocked--;
+                currentQtyStocked = Mathf.Max(0, currentQtyStocked - 1);
             }
             if (tmp == itemToRemove || removed)
             {

@@ -115,7 +115,7 @@ public class Inventory : MonoBehaviour
             while (tmp.quantity > 0)
             {
                 UpdateInventoryUI(tmp.name, "remove");
-                tmp.quantity--;
+                tmp.quantity = Mathf.Max(0, tmp.quantity - 1);
             }                
         }
         currentQty = 0;

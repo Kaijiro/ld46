@@ -1379,6 +1379,11 @@ PrefabInstance:
       propertyPath: level3Helps
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5613542295781268197, guid: 7888cf29b06146d4fb26ed1f2143a64b,
+        type: 3}
+      propertyPath: requirementDisplayer2
+      value: 
+      objectReference: {fileID: 2067264818}
     - target: {fileID: 5613542295781268202, guid: 7888cf29b06146d4fb26ed1f2143a64b,
         type: 3}
       propertyPath: m_Name

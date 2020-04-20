@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using Recipes;
 using UnityEngine;
@@ -10,7 +12,10 @@ namespace Streum
     {
         public float newRequirementProbability;
         public int maxRequirementNumber;
-        
+
+        public GameObject requirementDisplayer1;
+        public GameObject requirementDisplayer2;
+
         public GameObject level2Helps;
 
         public int Level { get; private set; }
@@ -27,7 +32,9 @@ namespace Streum
         };
 
         private readonly int[] _currentProgress = {0, 0, 0};
-        
+
+        private IEnumerator coroutine;
+
         private void Awake()
         {
             Level = 1;
@@ -74,6 +81,12 @@ namespace Streum
 
                 Debug.Log("LOKAT has a new requirement ! " + requirement);
                 Requirements.Add(requirement);
+
+                DisplayRequirements();
+
+                coroutine = WaitAndHideRequirements(1.0f);
+                StartCoroutine(coroutine);
+
             }
         }
 
@@ -92,20 +105,22 @@ namespace Streum
 
         void OnRecipeFinished(Recipe recipe)
         {
+            Requirements.Remove(recipe);
+
             if (recipe.IsPerfectlyDone())
             {
                 _currentProgress[recipe.Level - 1] = _currentProgress[recipe.Level - 1] + 1;
-                Debug.Log("Recipe perfectly done ! Current progression is : " + _currentProgress[0] + " " + _currentProgress[1] + " " + _currentProgress[2]);
+               // Debug.Log("Recipe perfectly done ! Current progression is : " + _currentProgress[0] + " " + _currentProgress[1] + " " + _currentProgress[2]);
 
                 if (StreumShouldLevelUp())
                 {
                     GameEvents.Instance.LevelUp(++Level);
                     UpdateActionListPanel();
-                    Debug.Log("LOKAT has reached a new level ! We're level " + Level);
+                    // Debug.Log("LOKAT has reached a new level ! We're level " + Level);
                 }
             }
 
-            Requirements.Remove(recipe);
+            DisplayRequirements();
         }
 
         private bool StreumShouldLevelUp()
@@ -134,5 +149,37 @@ namespace Streum
             CancelInvoke(nameof(GenerateRequirement));
             GameEvents.Instance.OnRecipeFinished -= OnRecipeFinished;
         }
+
+        private void DisplayRequirements()
+        {
+            switch (Requirements.Count)
+            {
+                case 0:
+                    requirementDisplayer1.SetActive(false);
+                    requirementDisplayer2.SetActive(false);
+                    break;
+                case 1:
+                    requirementDisplayer1.SetActive(false);
+                    requirementDisplayer2.SetActive(true);
+                    break;
+                default:
+                    requirementDisplayer1.SetActive(true);
+                    requirementDisplayer2.SetActive(true);
+                    break;
+            }
+        }
+
+        private void HideRequirements()
+        {
+            requirementDisplayer1.SetActive(false);
+            requirementDisplayer2.SetActive(false);
+        }
+
+        IEnumerator WaitAndHideRequirements(float waitTime)
+        {
+            yield return new WaitForSeconds(waitTime);
+            HideRequirements();
+        }
+
     }
 }
