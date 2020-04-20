@@ -25,6 +25,13 @@ public class Kitchen : MonoBehaviour
     void Start()
     {
         stockUIContent = new string[maxContent];
+
+        GameEvents.Instance.OnRecipeFinished += OnRecipeFinished;
+    }
+
+    public void OnRecipeFinished(Recipe recipe)
+    {
+        DisplayRequirements();
     }
 
     private void Awake()
@@ -121,7 +128,6 @@ public class Kitchen : MonoBehaviour
 
     private bool CheckRecipeTrigger(Inventory playerInventory)
     {
-        Debug.Log("In CheckRecipeTrigger");
         string[] tmpPlayerInventory = playerInventory.GetInventoryItems();
         string[] tmpStockContent = (string[])stockUIContent.Clone();
 
