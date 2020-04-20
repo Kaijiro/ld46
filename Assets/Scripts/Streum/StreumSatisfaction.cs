@@ -26,6 +26,9 @@ namespace Streum
         private float score;
         private bool updateScore = true;
 
+        public float deltaCatisfaction = 1f;
+        private float currentDelta = 0f;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -33,13 +36,15 @@ namespace Streum
             _slider = GetComponent<Slider>();
             _fillingImage = _slider.fillRect.GetComponent<Image>();
             _level = 1;
-            
+            currentDelta = deltaCatisfaction;
+            score = 0f;
+            updateScore = true;
+
             InvokeRepeating(nameof(DecreaseSatisfaction), 0f, barUpdateRate);
 
             GameEvents.Instance.OnRecipeFinished += OnRecipeFinished;
-            GameEvents.Instance.OnLevelUp += OnLevelUp;
-            score = 0f;
-            updateScore = true;
+            GameEvents.Instance.OnLevelUp += OnLevelUp;          
+            
         }
 
         void Update()
@@ -48,12 +53,20 @@ namespace Streum
             {
                 score += Time.deltaTime;
             }
-                
+            
+            if (currentDelta < deltaCatisfaction)
+            {
+                currentDelta += Time.deltaTime ;
+            }
+              
         }
 
         void DecreaseSatisfaction()
         {
-            _currentSatisfaction -= satisfactionDecayRate[_level - 1] * barUpdateRate;
+            if (currentDelta >= deltaCatisfaction)
+            {
+                _currentSatisfaction -= satisfactionDecayRate[_level - 1] * barUpdateRate;
+            }                 
 
             UpdateSlider();
 
@@ -88,6 +101,7 @@ namespace Streum
 
         private void OnRecipeFinished(Recipe recipe)
         {
+            currentDelta = 0f;
             _currentSatisfaction = Math.Min(maximumSatisfaction, _currentSatisfaction + recipe.CurrentScore);
         }
 
