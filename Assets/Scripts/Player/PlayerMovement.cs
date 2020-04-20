@@ -79,7 +79,6 @@ public class PlayerMovement : MonoBehaviour
 		{
 			isJumping = true;
 			rigidBody.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
-			// AudioManager.PlayJumpAudio();
 		}
 
 		if (rigidBody.velocity.y < maxFallSpeed)
