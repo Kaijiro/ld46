@@ -4,28 +4,32 @@ public class PlayerMovement : MonoBehaviour
 {
 	public float groundSpeed = 8f;
 	public float airSpeed = 3f;
-	public float maxFallSpeed = -25f;       
-	public float footOffset = .4f;          
-	public float groundDistance = .87f;     
-	public LayerMask groundLayer;           
+	public float maxFallSpeed = -25f;
+	public float footOffset = .4f;
+	public float groundDistance = .87f;
+	public LayerMask groundLayer;
 
-	public float jumpForce = 6.3f;          
-	public bool isJumping;
+	public float jumpForce = 6.3f;
+	private bool isJumping;
 
 	public Sprite Iddle;
 	public Sprite Falling;
 
+	private float jumpHeight = 0f;
+
 	PlayerInput input;
 	Inventory inventory;
-	BoxCollider2D bodyCollider;				
+	BoxCollider2D bodyCollider;
 	Rigidbody2D rigidBody;
 	SpriteRenderer spriteRenderer;
 
-	float originalXScale;					
-	int direction = 1;						
+	float originalXScale;
+	int direction = 1;
 
+	private float initialFrameCount = 0;
+	private bool isFalling = false;
 
-	void Start ()
+	void Start()
 	{
 		input = GetComponent<PlayerInput>();
 		rigidBody = GetComponent<Rigidbody2D>();
@@ -34,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
 		inventory = GetComponent<Inventory>();
 		spriteRenderer = GetComponent<SpriteRenderer>();
 	}
+
 
 	void FixedUpdate()
 	{
@@ -63,8 +68,15 @@ public class PlayerMovement : MonoBehaviour
 
 		if (leftCheck || rightCheck)
 		{
+			if (isJumping)
+			{
+				initialFrameCount += Time.deltaTime;
+				Debug.Log("Ground reached in : " + (initialFrameCount));
+			}
 			isJumping = false;
+			isFalling = false;
 			spriteRenderer.sprite = Iddle;
+			rigidBody.gravityScale = 1f;
 		}
 	}
 
@@ -73,7 +85,7 @@ public class PlayerMovement : MonoBehaviour
 		float speed = groundSpeed;
 		if (isJumping)
 			speed = airSpeed;
-		
+
 		float xVelocity = speed * input.horizontal;
 		if (xVelocity * direction < 0f)
 			FlipCharacterDirection();
@@ -86,14 +98,35 @@ public class PlayerMovement : MonoBehaviour
 		if (input.jumpPressed && !isJumping)
 		{
 			isJumping = true;
+			initialFrameCount = Time.deltaTime;
 			rigidBody.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
-		}	
+			jumpHeight = this.transform.position.y;
+		}
 
-		if (rigidBody.velocity.y < maxFallSpeed)
-			rigidBody.velocity = new Vector2(rigidBody.velocity.x, maxFallSpeed);
+		if (isJumping)
+		{
+			// check max height is reached
+			if ((this.transform.position.y - jumpHeight) >= 2f)
+			{
+				rigidBody.gravityScale = 4f;
+				isFalling = true;
+			}
 
-		if ( rigidBody.velocity.y < -1.5f)
-        {
+		}
+
+		if (rigidBody.velocity.y < -0.5f)
+		{
+			rigidBody.gravityScale = 4f;
+		}
+
+		if (rigidBody.velocity.y < -9f)
+		{
+			isFalling = true;
+		}
+
+		if (isFalling)
+		{
+			jumpHeight = 0f;
 			spriteRenderer.sprite = Falling;
 		}
 	}
