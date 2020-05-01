@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
 	public float hipsOffset = .4f;
 	public float footOffset = .4f;
 	public float kneeOffset = .4f;
+	public float chestOffset = .4f;
 	public float groundDistance = .87f;
 	public float wallDistance = 1f;
 	public float ceilingDistance = 2f;
@@ -72,13 +73,13 @@ public class PlayerMovement : MonoBehaviour
 		RaycastHit2D rWallCheck = Physics2D.Raycast(pos + vOffset, Vector2.right, wallDistance, wallLayer);
 		RaycastHit2D urWallCheck = Physics2D.Raycast(pos, Vector2.up, ceilingDistance, wallLayer);
 
-		/**/
+		/**
 		Color color = leftCheck ? Color.red : Color.green;
 		Debug.DrawRay(pos + lOffset, Vector2.down * groundDistance, color);
 		color = rightCheck ? Color.red : Color.green;
 		Debug.DrawRay(pos + rOffset, Vector2.down * groundDistance, color);
-		Debug.DrawRay(pos + vOffset, Vector2.left * wallDistance, Color.magenta);
-		Debug.DrawRay(pos + vOffset, Vector2.right * wallDistance, Color.magenta);
+		Debug.DrawRay(pos + vOffset, Vector2.left * wallDistance, color);
+		Debug.DrawRay(pos + vOffset, Vector2.right * wallDistance, color);
 		Debug.DrawRay(pos, Vector2.up * ceilingDistance, Color.magenta);
 		/**/
 
@@ -121,13 +122,27 @@ public class PlayerMovement : MonoBehaviour
 
 	void MidAirMovement()
 	{
+		Vector2 vOffset = new Vector2(0f, chestOffset);
+		Vector2 pos = transform.position;
+		RaycastHit2D lWallCheck = Physics2D.Raycast(pos + vOffset, Vector2.left, wallDistance, groundLayer);
+		RaycastHit2D rWallCheck = Physics2D.Raycast(pos + vOffset, Vector2.right, wallDistance, groundLayer);
+
+		Color color = lWallCheck ? Color.green : Color.magenta;
+		Debug.DrawRay(pos + vOffset, Vector2.left * wallDistance, color);
+		color = rWallCheck ? Color.green : Color.magenta;
+		Debug.DrawRay(pos + vOffset, Vector2.right * wallDistance, color);
+
 		if (input.jumpPressed && !isJumping)
 		{
 			isJumping = true;
 			initialFrameCount = Time.deltaTime;
 			rigidBody.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
-			jumpHeight = this.transform.position.y;
-			bodyCollider.enabled = false;
+			jumpHeight = this.transform.position.y;			
+
+			if (!lWallCheck && !rWallCheck)
+			{
+				bodyCollider.enabled = false;
+			}		
 
 		}
 
