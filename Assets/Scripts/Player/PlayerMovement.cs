@@ -5,9 +5,16 @@ public class PlayerMovement : MonoBehaviour
 	public float groundSpeed = 8f;
 	public float airSpeed = 3f;
 	public float maxFallSpeed = -25f;
+	public float fallingGravity = 4f;
+	public float normalGravity = 1f;
+	public float hipsOffset = .4f;
 	public float footOffset = .4f;
+	public float kneeOffset = .4f;
 	public float groundDistance = .87f;
+	public float wallDistance = 1f;
+	public float ceilingDistance = 2f;
 	public LayerMask groundLayer;
+	public LayerMask wallLayer;
 
 	public float jumpForce = 6.3f;
 	private bool isJumping;
@@ -56,14 +63,23 @@ public class PlayerMovement : MonoBehaviour
 	void PhysicsCheck()
 	{
 		Vector2 pos = transform.position;
-		Vector2 lOffset = new Vector2(-footOffset, 0f);
-		Vector2 rOffset = new Vector2(footOffset, 0f);
+		Vector2 lOffset = new Vector2(-hipsOffset, footOffset);
+		Vector2 rOffset = new Vector2(hipsOffset, footOffset);
+		Vector2 vOffset = new Vector2(0f, kneeOffset);
 		RaycastHit2D leftCheck = Physics2D.Raycast(pos + lOffset, Vector2.down, groundDistance, groundLayer);
 		RaycastHit2D rightCheck = Physics2D.Raycast(pos + rOffset, Vector2.down, groundDistance, groundLayer);
+		RaycastHit2D lWallCheck = Physics2D.Raycast(pos + vOffset, Vector2.left, wallDistance, wallLayer);
+		RaycastHit2D rWallCheck = Physics2D.Raycast(pos + vOffset, Vector2.right, wallDistance, wallLayer);
+		RaycastHit2D urWallCheck = Physics2D.Raycast(pos, Vector2.up, ceilingDistance, wallLayer);
 
-		/**
+		/**/
 		Color color = leftCheck ? Color.red : Color.green;
 		Debug.DrawRay(pos + lOffset, Vector2.down * groundDistance, color);
+		color = rightCheck ? Color.red : Color.green;
+		Debug.DrawRay(pos + rOffset, Vector2.down * groundDistance, color);
+		Debug.DrawRay(pos + vOffset, Vector2.left * wallDistance, Color.magenta);
+		Debug.DrawRay(pos + vOffset, Vector2.right * wallDistance, Color.magenta);
+		Debug.DrawRay(pos, Vector2.up * ceilingDistance, Color.magenta);
 		/**/
 
 		if (leftCheck || rightCheck)
@@ -73,10 +89,20 @@ public class PlayerMovement : MonoBehaviour
 				initialFrameCount += Time.deltaTime;
 				Debug.Log("Ground reached in : " + (initialFrameCount));
 			}
-			isJumping = false;
+			//isJumping = false;
 			isFalling = false;
+			bodyCollider.enabled = true;
 			spriteRenderer.sprite = Iddle;
-			rigidBody.gravityScale = 1f;
+			rigidBody.gravityScale = normalGravity;
+		}
+		if (leftCheck && rightCheck)
+		{
+			isJumping = false;
+		}
+
+		if ( lWallCheck || rWallCheck || urWallCheck )
+		{
+			bodyCollider.enabled = true;
 		}
 	}
 
@@ -101,6 +127,8 @@ public class PlayerMovement : MonoBehaviour
 			initialFrameCount = Time.deltaTime;
 			rigidBody.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
 			jumpHeight = this.transform.position.y;
+			bodyCollider.enabled = false;
+
 		}
 
 		if (isJumping)
@@ -108,20 +136,22 @@ public class PlayerMovement : MonoBehaviour
 			// check max height is reached
 			if ((this.transform.position.y - jumpHeight) >= 2f)
 			{
-				rigidBody.gravityScale = 4f;
+				rigidBody.gravityScale = fallingGravity;
 				isFalling = true;
+				//bodyCollider.enabled = true;
 			}
 
 		}
 
 		if (rigidBody.velocity.y < -0.5f)
 		{
-			rigidBody.gravityScale = 4f;
+			rigidBody.gravityScale = fallingGravity;
 		}
 
 		if (rigidBody.velocity.y < -9f)
 		{
 			isFalling = true;
+			//bodyCollider.enabled = true;
 		}
 
 		if (isFalling)
