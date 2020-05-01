@@ -32,6 +32,20 @@ public class GameEvents : MonoBehaviour
         OnLevelUp?.Invoke(level);
     }
 
+    public event Action OnGoodInputPressed;
+
+    public void GoodInputPressed()
+    {
+        OnGoodInputPressed?.Invoke();
+    }
+
+    public event Action OnWrongInputPressed;
+
+    public void WrongInputPressed()
+    {
+        OnWrongInputPressed?.Invoke();
+    }
+    
     public event Action OnGameOver;
 
     public void GameOver()

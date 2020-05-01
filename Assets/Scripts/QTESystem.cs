@@ -45,11 +45,13 @@ public class QTESystem : MonoBehaviour
                 if (Input.GetButtonDown(_waitedInput.TechnicalKeyName))
                 {
                     Debug.Log("Right Input stroked ! Asking recipe for the next input");
+                    GameEvents.Instance.GoodInputPressed();
                 }
                 else
                 {
                     Debug.Log("Missed, score decreased and QTE skipped !");
                     _currentRecipe.DecreaseScore();
+                    GameEvents.Instance.WrongInputPressed();
                 }
 
                 _waitedInput = _currentRecipe.GetNextStroke();
@@ -63,7 +65,7 @@ public class QTESystem : MonoBehaviour
                     GameEvents.Instance.RecipeFinished(_currentRecipe);
                     _waitingForQteInput = false;
                     _currentRecipe = null;
-                    qtePannel.SetActive(false);
+                    qtePannel.transform.localScale = new Vector3(0, 0, 0);
                 }
             }
         }
@@ -106,7 +108,7 @@ public class QTESystem : MonoBehaviour
         _currentRecipe = recipe;
         _currentRecipe.Begin();
         _waitedInput = recipe.GetNextStroke();
-        qtePannel.SetActive(true);
+        qtePannel.transform.localScale = new Vector3(1, 1, 1);
         Debug.Log("Waited input is " + _waitedInput.Key);
     }
 
