@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using InventoryItems;
+using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
-
     [SerializeField] private InventoryItem[] playerInventory;
     public Transform InventoryUI;
     public Sprite[] itemSprites; 
@@ -22,12 +22,12 @@ public class Inventory : MonoBehaviour
     {
         if (currentQty < maxQty)
         {
-            foreach (InventoryItem tmp in playerInventory)
+            foreach (InventoryItem item in playerInventory)
             {
-                if (tmp.name == newItem || tmp.name == "free")
+                if (item.name == newItem || item.name == "free")
                 {
-                    tmp.quantity = tmp.quantity + 1;
-                    tmp.name = newItem;
+                    item.quantity = item.quantity + 1;
+                    item.name = newItem;
                     UpdateInventoryUI(newItem, "add");
                     currentQty += 1;                    
                     break;
@@ -64,45 +64,52 @@ public class Inventory : MonoBehaviour
 
         if (mode == "add")
         {
-            InventoryUI.GetChild(currentQty).GetComponent<SpriteRenderer>().sprite = itemSprites[itemSpriteIdx];
+            var inventoryImage = InventoryUI.GetChild(currentQty).GetComponent<Image>();
+            inventoryImage.color = Color.white;
+            inventoryImage.sprite = itemSprites[itemSpriteIdx];
+
             inventoryContent[currentQty] = itemName;
         }
 
         if (mode == "remove")
         {
-            // 
             int index = 0;
             bool removed = false;
             foreach (string tmp in inventoryContent)
             {
                 if (tmp == itemName || removed)
                 {
+                    var inventoryImage = InventoryUI.GetChild(index).GetComponent<Image>();
+                    inventoryImage.color = Color.clear;
+                    
                     if (index + 1 < maxQty)
                     {
-                        InventoryUI.GetChild(index).GetComponent<SpriteRenderer>().sprite = InventoryUI.GetChild(index + 1).GetComponent<SpriteRenderer>().sprite;
+                        inventoryImage.sprite = InventoryUI.GetChild(index + 1).GetComponent<Image>().sprite;
+                        
                         inventoryContent[index] = inventoryContent[index + 1];
                         removed = true;
                     }
                     else
                     {
-                        InventoryUI.GetChild(index).GetComponent<SpriteRenderer>().sprite = null;
+                        inventoryImage.sprite = null;
+
                         inventoryContent[index] = null;
                     }
                 }
                 index++;
             }
-         }
+        }
     }
 
-    public void RemoveItem(string newItem)
+    public void RemoveItem(string item)
     {
         foreach (InventoryItem tmp in playerInventory)
         {
-            if (tmp.name == newItem && tmp.quantity > 0)
+            if (tmp.name == item && tmp.quantity > 0)
             {
-                tmp.quantity = tmp.quantity - 1;
+                tmp.quantity -= 1;
                 currentQty -= 1;
-                UpdateInventoryUI(newItem, "remove");
+                UpdateInventoryUI(item, "remove");
                 break;            
             }            
         }
@@ -110,26 +117,28 @@ public class Inventory : MonoBehaviour
 
     public void Empty()
     {
-        foreach ( InventoryItem tmp in playerInventory )
+        foreach (InventoryItem item in playerInventory )
         {
-            while (tmp.quantity > 0)
+            while (item.quantity > 0)
             {
-                UpdateInventoryUI(tmp.name, "remove");
-                tmp.quantity = Mathf.Max(0, tmp.quantity - 1);
+                UpdateInventoryUI(item.name, "remove");
+                item.quantity = Mathf.Max(0, item.quantity - 1);
             }                
         }
+
         currentQty = 0;
     }
 
     public bool HasItem(string itemNeeded)
     {
-        foreach (InventoryItem tmp in playerInventory)
+        foreach (InventoryItem item in playerInventory)
         {
-            if (tmp.name == itemNeeded && tmp.quantity > 0)
+            if (item.name == itemNeeded && item.quantity > 0)
             {
                 return true;
             }
         }
+
         return false;
     }
 
@@ -140,13 +149,14 @@ public class Inventory : MonoBehaviour
 
     public int GetItemQty(string newItem)
     {
-        foreach (InventoryItem tmp in playerInventory)
+        foreach (InventoryItem item in playerInventory)
         {
-            if (tmp.name == newItem)
+            if (item.name == newItem)
             {
-                return tmp.quantity;
+                return item.quantity;
             }
         }
+
         return 0;
     }
 
@@ -168,7 +178,4 @@ public class Inventory : MonoBehaviour
 
         return copyInventory;
     }
-
 }
-
-
