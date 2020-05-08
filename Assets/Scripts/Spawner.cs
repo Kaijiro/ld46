@@ -9,6 +9,7 @@ public class Spawner : MonoBehaviour
     public Inventory inventoryScript;
     public Spawner[] otherSpawner;
     public StreumRequirements streumRequirements;
+    public SpawnPool spawnPool;
 
     private bool free = true;
 
@@ -30,7 +31,7 @@ public class Spawner : MonoBehaviour
         {
             free = false;
             Vector3 newPos = transform.position;
-            int toSpawn = Random.Range(0, max);
+            int toSpawn = spawnPool.getFoodToSpawn(max); // improve with "weight"
             float modifier = 0f;
             switch(toSpawn)
             {

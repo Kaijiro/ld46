@@ -88,7 +88,7 @@ public class PlayerMovement : MonoBehaviour
 			if (isJumping)
 			{
 				initialFrameCount += Time.deltaTime;
-				Debug.Log("Ground reached in : " + (initialFrameCount));
+				// Debug.Log("Ground reached in : " + (initialFrameCount));
 			}
 			//isJumping = false;
 			isFalling = false;

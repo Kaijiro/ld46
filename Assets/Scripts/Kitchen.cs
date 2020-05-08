@@ -49,11 +49,11 @@ public class Kitchen : MonoBehaviour
                     {
                         foreach (string itemNeeded in currentRecipe.Ingredients)
                         {
-                            Debug.Log("Do you have " + itemNeeded + " ?");
+                            //Debug.Log("Do you have " + itemNeeded + " ?");
                             
                             if (inventoryScript.HasItem(itemNeeded) && (currentQtyStocked < maxContent))
                             {
-                                Debug.Log("Great, thank you Brian !");
+                                //Debug.Log("Great, thank you Brian !");
                                 inventoryScript.RemoveItem(itemNeeded);
                                 int itemSpriteIdx = 0;
                                 // WARNING : UGLY DIRTY CODE
@@ -83,7 +83,7 @@ public class Kitchen : MonoBehaviour
                             {
                                 if (currentQtyStocked >= maxContent)
                                 {
-                                    Debug.Log("max stock frigo reached");
+                                    //Debug.Log("max stock frigo reached");
                                 }
                             }
                         }
@@ -186,7 +186,7 @@ public class Kitchen : MonoBehaviour
                 {
                     if (!string.IsNullOrEmpty(itemToTake))
                     {
-                        Debug.Log("item to remove frigo" + itemToTake);
+                        //Debug.Log("item to remove frigo" + itemToTake);
                         RemoveItem(itemToTake);
                     }
                 }
