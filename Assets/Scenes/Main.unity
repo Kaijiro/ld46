@@ -3184,6 +3184,7 @@ MonoBehaviour:
   hipsOffset: 0.4
   footOffset: -1.1
   kneeOffset: -0.8
+  chestOffset: 0.4
   groundDistance: 0.4
   wallDistance: 0.6
   ceilingDistance: 1.4
@@ -6972,6 +6973,21 @@ PrefabInstance:
         type: 3}
       propertyPath: maximumSatisfaction
       value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 5635768268439490948, guid: 0163b1d324a37534b835515089abe440,
+        type: 3}
+      propertyPath: satisfactionDecayRate.Array.data[0]
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5635768268439490948, guid: 0163b1d324a37534b835515089abe440,
+        type: 3}
+      propertyPath: satisfactionDecayRate.Array.data[2]
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5635768268439490948, guid: 0163b1d324a37534b835515089abe440,
+        type: 3}
+      propertyPath: satisfactionDecayRate.Array.data[3]
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5635768268439490949, guid: 0163b1d324a37534b835515089abe440,
         type: 3}

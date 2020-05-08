@@ -7,7 +7,7 @@ namespace Recipes
         public CatFoodCanRecipe()
         {
             Name = "Cat food can";
-            BaseScore = 10;
+            BaseScore = 15;
             Malus = 1;
             Description = "You have to open the food can, pour it then serve !";
             Level = 1;

@@ -7,8 +7,8 @@ namespace Recipes
         public MixChickenSalmonRecipe()
         {
             Name = "Mix Chicken/Salmon";
-            BaseScore = 20;
-            Malus = 4;
+            BaseScore = 50;
+            Malus = 10;
             Description = "You have to add the chicken, then the salmon, mix both ingredients and then serve the meal";
             Level = 2;
             Strokes = new List<QTEButtons.QTEInput>

@@ -7,7 +7,7 @@ namespace Recipes
         public CatnipLine()
         {
             Name = "Catnip Line";
-            BaseScore = 10;
+            BaseScore = 15;
             Malus = 1;
             Description =
                 "Stop judging me ! Just put this catnip in the mixer, mix it and serve it in a line so I can take it";
