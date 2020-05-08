@@ -12,6 +12,7 @@ namespace Streum
     {
         public float newRequirementProbability;
         public int maxRequirementNumber;
+        public int maxLevel = 5;
 
         public GameObject requirementDisplayer1;
         public GameObject requirementDisplayer2;
@@ -125,7 +126,7 @@ namespace Streum
 
         private bool StreumShouldLevelUp()
         {
-            if (Level == 5)
+            if (Level == maxLevel)
             {
                 return false;
             }

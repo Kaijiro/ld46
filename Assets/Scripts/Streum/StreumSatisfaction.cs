@@ -113,7 +113,7 @@ namespace Streum
         private void OnDestroy()
         {
             GameEvents.Instance.OnRecipeFinished -= OnRecipeFinished;
-            GameEvents.Instance.OnLevelUp += OnLevelUp;
+            GameEvents.Instance.OnLevelUp -= OnLevelUp;
             CancelInvoke(nameof(DecreaseSatisfaction));
         }
     }

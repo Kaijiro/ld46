@@ -1685,6 +1685,11 @@ PrefabInstance:
       propertyPath: requirementDisplayer2
       value: 
       objectReference: {fileID: 2067264818}
+    - target: {fileID: 5613542295781268197, guid: 7888cf29b06146d4fb26ed1f2143a64b,
+        type: 3}
+      propertyPath: maxLevel
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5613542295781268202, guid: 7888cf29b06146d4fb26ed1f2143a64b,
         type: 3}
       propertyPath: m_Name
@@ -7031,6 +7036,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5635768268439490948, guid: 0163b1d324a37534b835515089abe440,
         type: 3}
+      propertyPath: satisfactionDecayRate.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5635768268439490948, guid: 0163b1d324a37534b835515089abe440,
+        type: 3}
       propertyPath: satisfactionDecayRate
       value: 0.5
       objectReference: {fileID: 0}
@@ -7053,6 +7063,11 @@ PrefabInstance:
         type: 3}
       propertyPath: satisfactionDecayRate.Array.data[3]
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5635768268439490948, guid: 0163b1d324a37534b835515089abe440,
+        type: 3}
+      propertyPath: satisfactionDecayRate.Array.data[5]
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5635768268439490949, guid: 0163b1d324a37534b835515089abe440,
         type: 3}
