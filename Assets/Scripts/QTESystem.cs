@@ -23,6 +23,8 @@ public class QTESystem : MonoBehaviour
     public AudioClip goodSound;
     public AudioClip badSound;
 
+    public PlayerInput brian;
+
     private void Start()
     {
         GameEvents.Instance.OnRecipeStart += OnRecipeStart;
@@ -59,8 +61,9 @@ public class QTESystem : MonoBehaviour
 
                 if (_waitedInput == null)
                 {
+                    brian.inQte = false;
                     DisplayRecipeFeedback();
-                    
+
                     Debug.Log("End of the QTE ! The score is : " + _currentRecipe.CurrentScore);
                     GameEvents.Instance.RecipeFinished(_currentRecipe);
                     _waitingForQteInput = false;
@@ -104,6 +107,7 @@ public class QTESystem : MonoBehaviour
 
     private void OnRecipeStart(Recipe recipe)
     {
+        brian.inQte = true;
         Debug.Log("Starting a new recipe !");
         _currentRecipe = recipe;
         _currentRecipe.Begin();
@@ -114,7 +118,7 @@ public class QTESystem : MonoBehaviour
 
     private bool PlayerIsTryingToMove()
     {
-        return Math.Abs(Input.GetAxis("Horizontal")) > 0.01 || Input.GetKeyDown("space");
+        return Input.GetKeyDown("space") || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.LeftArrow);
     }
 
     private void OnDestroy()

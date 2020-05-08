@@ -1586,6 +1586,11 @@ PrefabInstance:
       propertyPath: badSound
       value: 
       objectReference: {fileID: 8300000, guid: 62dc91172ac24f34eacb8f18e197c520, type: 3}
+    - target: {fileID: 4564340089153311146, guid: 69cdb9b05cd27644aa7ab0eeec0a39c1,
+        type: 3}
+      propertyPath: brian
+      value: 
+      objectReference: {fileID: 1374749157}
     - target: {fileID: 4564340089153311147, guid: 69cdb9b05cd27644aa7ab0eeec0a39c1,
         type: 3}
       propertyPath: m_Name
@@ -3227,6 +3232,7 @@ MonoBehaviour:
   horizontal: 0
   jumpPressed: 0
   trashPressed: 0
+  inQte: 0
 --- !u!114 &1374749158
 MonoBehaviour:
   m_ObjectHideFlags: 0

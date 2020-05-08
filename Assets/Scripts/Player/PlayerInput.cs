@@ -8,6 +8,7 @@ public class PlayerInput : MonoBehaviour
 	[HideInInspector] public float horizontal;		
 	[HideInInspector] public bool jumpPressed;
 	[HideInInspector] public bool trashPressed;
+	public bool inQte = false;
 	bool readyToClear;								
 
 
@@ -16,16 +17,12 @@ public class PlayerInput : MonoBehaviour
 	{
 		ClearInput();
 
-		//If the Game Manager says the game is over, exit
-		/*
-		if (GameManager.IsGameOver())
-			return;
-		*/
+		if (!inQte)
+		{
+			ProcessInputs();
 
-		
-		ProcessInputs();
-				
-		horizontal = Mathf.Clamp(horizontal, -1f, 1f);
+			horizontal = Mathf.Clamp(horizontal, -1f, 1f);
+		}
 	}
 
 	void FixedUpdate()
