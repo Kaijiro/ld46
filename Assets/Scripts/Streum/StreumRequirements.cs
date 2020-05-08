@@ -29,7 +29,8 @@ namespace Streum
             {1, new[] {1, 0, 0}}, 
             {2, new[] {0, 1, 0}}, 
             {3, new[] {0, 2, 1}},
-            {4, new[] {0, 0, 5}}
+            {4, new[] {0, 0, 2}},
+            {5, new[] {0, 0, 4}},
         };
 
         private readonly int[] _currentProgress = {0, 0, 0};
@@ -100,6 +101,7 @@ namespace Streum
                 case 3: return new[] {1, 2, 3};
                 case 4: return new[] {2, 3};
                 case 5: return new[] {3};
+                case 6: return new[] {3};
                 default: return new[] {1, 2, 3};
             }
         }
