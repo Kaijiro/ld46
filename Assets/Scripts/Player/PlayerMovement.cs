@@ -34,8 +34,10 @@ public class PlayerMovement : MonoBehaviour
 	float originalXScale;
 	int direction = 1;
 
-	private float initialFrameCount = 0;
 	private bool isFalling = false;
+
+	private float maxVelocityUp = 12f;
+	private float maxVelocityDown = -30f;
 
 	void Start()
 	{
@@ -85,21 +87,22 @@ public class PlayerMovement : MonoBehaviour
 
 		if (leftCheck || rightCheck)
 		{
-			if (isJumping)
+
+			if (rigidBody.velocity.y <= 0)
 			{
-				initialFrameCount += Time.deltaTime;
-				// Debug.Log("Ground reached in : " + (initialFrameCount));
-			}
-			//isJumping = false;
+				isJumping = false;
+			}			
 			isFalling = false;
 			bodyCollider.enabled = true;
 			spriteRenderer.sprite = Iddle;
 			rigidBody.gravityScale = normalGravity;
+			
 		}
-		if (leftCheck && rightCheck)
+		
+		/*if (leftCheck && rightCheck)
 		{
 			isJumping = false;
-		}
+		}*/
 
 		if ( lWallCheck || rWallCheck || urWallCheck )
 		{
@@ -127,15 +130,16 @@ public class PlayerMovement : MonoBehaviour
 		RaycastHit2D lWallCheck = Physics2D.Raycast(pos + vOffset, Vector2.left, wallDistance, groundLayer);
 		RaycastHit2D rWallCheck = Physics2D.Raycast(pos + vOffset, Vector2.right, wallDistance, groundLayer);
 
+		/**
 		Color color = lWallCheck ? Color.green : Color.magenta;
 		Debug.DrawRay(pos + vOffset, Vector2.left * wallDistance, color);
 		color = rWallCheck ? Color.green : Color.magenta;
 		Debug.DrawRay(pos + vOffset, Vector2.right * wallDistance, color);
+		/**/
 
 		if (input.jumpPressed && !isJumping)
 		{
 			isJumping = true;
-			initialFrameCount = Time.deltaTime;
 			rigidBody.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
 			jumpHeight = this.transform.position.y;			
 
@@ -153,7 +157,6 @@ public class PlayerMovement : MonoBehaviour
 			{
 				rigidBody.gravityScale = fallingGravity;
 				isFalling = true;
-				//bodyCollider.enabled = true;
 			}
 
 		}
@@ -166,13 +169,29 @@ public class PlayerMovement : MonoBehaviour
 		if (rigidBody.velocity.y < -9f)
 		{
 			isFalling = true;
-			//bodyCollider.enabled = true;
+		}
+
+		if (rigidBody.velocity.y > maxVelocityUp)
+		{
+			rigidBody.velocity = new Vector2(rigidBody.velocity.x, maxVelocityUp);
+		}
+
+		if (rigidBody.velocity.y < maxVelocityDown)
+		{
+			rigidBody.velocity = new Vector2(rigidBody.velocity.x, maxVelocityDown);
+			bodyCollider.enabled = true;
 		}
 
 		if (isFalling)
 		{
 			jumpHeight = 0f;
 			spriteRenderer.sprite = Falling;
+		}
+
+
+		if (rigidBody.velocity.y >= 0f)
+		{
+			spriteRenderer.sprite = Iddle;
 		}
 	}
 
